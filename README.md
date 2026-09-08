@@ -135,11 +135,30 @@ print(5 > 3 < 4 == 3 + 1)    # True
 | `set` | Zbiór | Mutowalny | Brak | Nieuporządkowane Unikalne elementy | `{3, 5, 'pies', False}` |
 | `dict` | Słownik | Mutowalny | Kluczami | Pary `klucz: wartość` | `{'imię': 'Jadwiga', 'wiek': 23}` |
 
+### Przykłady kodu i operacji na kontenerach
+
 ```python
+# Przypisz kilka kontenerów do różnych zmiennych
 lista1 = [3, 5, 6, 3, 'pies', 'kot', False]
 krotka1 = (3, 5, 6, 3, 'pies', 'kot', False)
 zbior1 = {3, 5, 6, 3, 'pies', 'kot', False}
 slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
+
+# Dodaj i przypisz ponownie (modyfikacja listy / utworzenie nowej krotki)
+lista1 += [5, 'winogrona']
+print(lista1)
+# Output: [3, 5, 6, 3, 'pies', 'kot', False, 5, 'winogrona']
+
+krotka1 += (5, 'winogrona')
+print(krotka1)
+# Output: (3, 5, 6, 3, 'pies', 'kot', False, 5, 'winogrona')
+
+# Mnożenie sekwencji
+print([1, 2, 3, 4] * 2)
+# Output: [1, 2, 3, 4, 1, 2, 3, 4]
+
+print((1, 2, 3, 4) * 3)
+# Output: (1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)
 
 print(zbior1)   # Output np.: {False, 3, 5, 6, 'kot', 'pies'}
 ```
