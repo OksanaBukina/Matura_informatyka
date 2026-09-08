@@ -205,9 +205,9 @@ s = "INFORMATYKA"
 print(s[::-1])    # "AKYTAMROFNI" — odwrócenie ciągu znaków (sprawdzanie palindromu)
 print(s[-8:])     # "ORMATYKA"   — ostatnie 8 znaków ciągu
 print(s[:8])      # "INFORMAT"   — pierwsze 8 znaków ciągu
-print(s[:-1])     # "INFORMATYK" — строка bez ostatniego znaku
-print(s[1:])      # "NFORMATYKA" — строка bez pierwszego znaku
-print(s[1:-1])    # "NFORMATYK"  — строка bez pierwszego i ostatniego znaku
+print(s[:-1])     # "INFORMATYK" — bez ostatniego znaku
+print(s[1:])      # "NFORMATYKA" — bez pierwszego znaku
+print(s[1:-1])    # "NFORMATYK"  — bez pierwszego i ostatniego znaku
 print(s[::2])     # "IFRAYA"     — tylko indeksy parzyste (co 2-gi symbol)
 print(s[1::2])    # "NOMTK"      — tylko indeksy nieparzyste
 
@@ -223,8 +223,15 @@ print(slownik1['imię'])        # 'Jadwiga'
 ---
 
 ### ✏️ Samodzielne zadania: Dostęp i Slicing
-1. Dla napisu `napis = "Programowanie w Pythonie"` wyciągnij słowo `"Pythonie"` używając ujemnych indeksów slicing `napis[-8:]` oraz odwróć napis (`napis[::-1]`).
-2. Ze słownika `student = {"dane": {"imie": "Marek", "nazwisko": "Kowalski"}, "oceny": [4, 5, 3, 5]}` pobierz nazwisko oraz drugą ocenę z listy.
+1. **Zabawy ze slicingiem tekstu:** Mając zmienną `slowo = "MATEMATYKA"`:
+   - Wyciągnij pierwsze 5 znaków słowa (`slowo[:5]`).
+   - Wyciągnij ostatnie 4 znaki słowa (`slowo[-4:]`).
+   - Wyciągnij tekst bez pierwszego i ostatniego znaku (`slowo[1:-1]`).
+   - Odwróć słowo za pomocą wycinania (`slowo[::-1]`).
+   - Wyciągnij tylko znaki na indeksach parzystych (`slowo[::2]`).
+2. **Wycinanie nieparzystych indeksów oraz nawigacja:**
+   - Dla napisu `napis = "Egzamin Maturalny"` wyciągnij znaki na indeksach nieparzystych (`napis[1::2]`).
+   - Ze słownika `student = {"dane": {"imie": "Marek", "nazwisko": "Kowalski"}, "oceny": [4, 5, 3, 5]}` pobierz nazwisko oraz drugą ocenę z listy.
 
 ---
 
@@ -643,14 +650,21 @@ W tej sekcji znajdują się rozwiązania do zadań teoretycznych z Sekcji 1 oraz
    ```
 
 ### Zadania 1.4: Dostęp i Slicing
-1. **Wycinanie napisu:**
+1. **Slicing słowa `slowo = "MATEMATYKA"`:**
    ```python
-   napis = "Programowanie w Pythonie"
-   slowo = napis[-8:]    # "Pythonie"
-   odwrocony = napis[::-1] # "einohtyP w einawomarogrp"
+   slowo = "MATEMATYKA"
+
+   pierwsze_5 = slowo[:5]      # "MATEM"
+   ostatnie_4 = slowo[-4:]     # "TYKA"
+   bez_krajnych = slowo[1:-1]  # "ATEMATYK"
+   odwrocone = slowo[::-1]     # "AKYTAMETAM"
+   parzyste = slowo[::2]       # "MTMTK"
    ```
-2. **Nawigacja w słowniku:**
+2. **Zaawansowane wycinanie i słowniki:**
    ```python
+   napis = "Egzamin Maturalny"
+   nieparzyste = napis[1::2] # "gmi aurn"
+
    student = {"dane": {"imie": "Marek", "nazwisko": "Kowalski"}, "oceny": [4, 5, 3, 5]}
    nazwisko = student["dane"]["nazwisko"] # "Kowalski"
    druga_ocena = student["oceny"][1]       # 5
