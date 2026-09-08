@@ -1,6 +1,6 @@
 # 🐍 Python — Teoria i Praktyka (Matura Informatyka)
 
-Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę GitHub. Zawiera omówienie teorii wraz z przykładami oraz **sekcję praktyczną (Praktyka)** z 10 zadaniami programistycznymi, danymi testowymi i pełnymi rozwiązaniami w Pythonie.
+Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę GitHub. Zawiera omówienie teorii, część praktyczną z 10 zadaniami oraz **zbiorczą sekcję rozwiązań i odpowiedzi umieszczoną na samym końcu**.
 
 ---
 
@@ -25,6 +25,9 @@ Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę
   - [Zadanie 8: Obliczanie silni](#zadanie-8-obliczanie-silni)
   - [Zadanie 9: Sprawdzanie liczby pierwszej](#zadanie-9-sprawdzanie-liczby-pierwszej)
   - [Zadanie 10: Prosty parser URL](#zadanie-10-prosty-parser-url)
+- [3. Odpowiedzi i rozwiązania zadań](#3-odpowiedzi-i-rozwiązania-zadań)
+  - [3.1 Odpowiedzi do zadań teoretycznych (Sekcja 1)](#31-odpowiedzi-do-zadań-teoretycznych-sekcja-1)
+  - [3.2 Rozwiązania zadań praktycznych (Sekcja 2)](#32-rozwiązania-zadań-praktycznych-sekcja-2)
 
 ---
 
@@ -222,7 +225,7 @@ wypisz_argumenty(arg3='C', arg1='A', arg2='B') # Nazwane
 
 ### ✏️ Samodzielne zadania: Argumenty w funkcjach
 1. Napisz funkcję `oblicz_cene_brutto(cena_netto, vat=0.23)`, która zwraca wartość brutto. Wywołaj ją z domyślnym VAT oraz ze stawką 8% (`vat=0.08`).
-2. Przetestuj wywołanie z błędną kolejnością argumentów nazwanych i pozycyjnych (np. `func(arg2='B', 'A')`) i zaobserwuj błąd interpreter.
+2. Przetestuj wywołanie z błędną kolejnością argumentów nazwanych i pozycyjnych (np. `func(arg2='B', 'A')`) i zaobserwuj błąd interpretera.
 
 ---
 
@@ -247,7 +250,7 @@ print(f'Za 5 lat będziesz mieć {wiek + 5} lat.')
 
 # 2. Praktyka — Zadania programistyczne
 
-Ten rozdział zawiera **10 zadań praktycznych** w języku polskim, sprawdzających najważniejsze umiejętności programistyczne w Pythonie.
+Ten rozdział zawiera **10 zadań praktycznych** w języku polskim. **Odpowiedzi i rozwiązania do wszystkich zadań znajdują się w [Sekcji 3 na końcu dokumentu](#3-odpowiedzi-i-rozwiązania-zadań).**
 
 ---
 
@@ -276,18 +279,6 @@ Należy zaimplementować funkcję, która przyjmuje jako argument ciąg znaków 
 * **Przykład 3 (przypadek brzegowy):**
   * Wejście: `""` (pusty napis)
   * Wyjście: `""`
-
-### Rozwiązanie w Pythonie
-```python
-def reverse_string(s: str) -> str:
-    """Zwraca ciąg znaków s w odwrotnej kolejności."""
-    return s[::-1]
-
-# Testy
-print(reverse_string("Hello, World!"))  # Output: "!dlroW ,olleH"
-print(reverse_string("Python"))         # Output: "nohtyP"
-print(reverse_string(""))               # Output: ""
-```
 
 ---
 
@@ -318,26 +309,6 @@ Wymagane jest napisanie funkcji, która przyjmuje ciąg znaków składający si�
   * Wejście: `"trzy dwa raz"`
   * Wyjście: `"trzy"`
 
-### Rozwiązanie w Pythonie
-```python
-def find_longest_word(sentence: str) -> str:
-    """Znajduje pierwsze najdłuższe słowo w podanym zdaniu."""
-    words = sentence.split()
-    if not words:
-        return ""
-    
-    longest_word = words[0]
-    for word in words:
-        if len(word) > len(longest_word):
-            longest_word = word
-    return longest_word
-
-# Testy
-print(find_longest_word("Python jest potężnym i uniwersalnym językiem programowania")) # "programowania"
-print(find_longest_word("Tworzenie aplikacji wymaga znajomości różnych technologii"))     # "technologii"
-print(find_longest_word("trzy dwa raz"))                                              # "trzy"
-```
-
 ---
 
 ## Zadanie 3: Sprawdzanie palindromu
@@ -366,19 +337,6 @@ Należy zaimplementować funkcję sprawdzającą, czy przekazany ciąg znaków j
   * Wejście: `"A man, a plan, a canal: Panama"`
   * Wyjście: `True`
 
-### Rozwiązanie w Pythonie
-```python
-def is_palindrome(s: str) -> bool:
-    """Sprawdza, czy napis s jest palindromem (z pominięciem spacji, interpunkcji i wielkości liter)."""
-    cleaned = ''.join(char.lower() for char in s if char.isalnum())
-    return cleaned == cleaned[::-1]
-
-# Testy
-print(is_palindrome("А роза упала на лапу Азора"))       # True
-print(is_palindrome("race a car"))                      # False
-print(is_palindrome("A man, a plan, a canal: Panama"))   # True
-```
-
 ---
 
 ## Zadanie 4: Suma elementów listy
@@ -403,32 +361,13 @@ Należy napisać funkcję, która oblicza sumę elementów liczbowych w podanej 
   * Wyjście: `15`
 * **Przykład 2 (typy mieszane):**
   * Wejście: `[10, "hello", 20.5, True, None, 30]`
-  * Wyjście: `60.5` *(Uwaga: True ma typ bool i nie jest liczony jako liczba)*
+  * Wyjście: `60.5`
 * **Przykład 3 (brak liczb):**
   * Wejście: `["a", "b", "c"]`
   * Wyjście: `0`
 * **Przykład 4 (pusta lista):**
   * Wejście: `[]`
   * Wyjście: `0`
-
-### Rozwiązanie w Pythonie
-```python
-def sum_numeric_elements(items: list):
-    """Zwraca sumę elementów int oraz float znajdujących się w liście items."""
-    total = 0
-    for item in items:
-        # W Pythonie bool dziedziczy po int (isinstance(True, int) == True), 
-        # dlatego wyraźnie wykluczamy typ bool!
-        if isinstance(item, (int, float)) and not isinstance(item, bool):
-            total += item
-    return total
-
-# Testy
-print(sum_numeric_elements([1, 2, 3, 4, 5]))                       # 15
-print(sum_numeric_elements([10, "hello", 20.5, True, None, 30]))   # 60.5
-print(sum_numeric_elements(["a", "b", "c"]))                       # 0
-print(sum_numeric_elements([]))                                    # 0
-```
 
 ---
 
@@ -441,7 +380,6 @@ Należy zaimplementować funkcję, która przyjmuje listę i zwraca nową listę
 * Wykorzystanie instrukcji warunkowych.
 * Sprawdzanie przynależności elementu do kolekcji (`in`).
 * Tworzenie nowej listy.
-* (Dla zaawansowanych): Zrozumienie różnicy między `list` a `set` w kontekście zachowania kolejności.
 
 ### Dane wejściowe
 * `items` (`list`): Lista wejściowa z możliwymi duplikatami.
@@ -463,7 +401,334 @@ Należy zaimplementować funkcję, która przyjmuje listę i zwraca nową listę
   * Wejście: `[]`
   * Wyjście: `[]`
 
-### Rozwiązanie w Pythonie
+---
+
+## Zadanie 6: Analiza częstotliwości słów w tekście
+### Opis
+Należy napisać funkcję wykonującą analizę częstotliwości słów w przekazanym tekście. Funkcja powinna zwracać słownik, w którym kluczami są unikalne słowa z tekstu, a wartościami — liczba ich powtórzeń. Analiza nie powinna brać pod uwagę wielkości liter, a znaki interpunkcyjne należy zignorować.
+
+### Badane umiejętności
+* Praca ze słownikami.
+* Operacje na stringach (`.lower()`, `.split()`, usuwanie znaku interpunkcji).
+* Iteracja po liście słów.
+* Użycie metody słownika `.get()`.
+
+### Dane wejściowe
+* `text` (`str`): Tekst do analizy.
+
+### Dane wyjściowe
+* (`dict`): Słownik częstotliwości słów.
+
+### Przykłady (Dane testowe)
+* **Przykład 1:**
+  * Wejście: `"Hello world hello"`
+  * Wyjście: `{'hello': 2, 'world': 1}`
+* **Przykład 2 (z wielkością liter i interpunkcją):**
+  * Wejście: `"The quick brown fox jumps over the lazy dog. The dog was lazy."`
+  * Wyjście: `{'the': 3, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 2, 'dog': 2, 'was': 1}`
+* **Przykład 3 (pusty napis):**
+  * Wejście: `""`
+  * Wyjście: `{}`
+
+---
+
+## Zadanie 7: Generator haseł
+### Opis
+Należy stworzyć funkcję do generowania losowego hasła o podanej długości. Hasło powinno składać się z zestawu znaków obejmującego małe i wielkie litery alfabetu łacińskiego, cyfry oraz znaki specjalne (`!@#$%^&*()_+-=[]{}|;:,.<>/?`).
+
+### Badane umiejętności
+* Użycie modułu `random` (`random.choice`).
+* Wykorzystanie stałych napisowych z modułu `string`.
+* Łączenie listy znaków w string za pomocą `.join()`.
+
+### Dane wejściowe
+* `length` (`int`): Oczekiwana długość hasła.
+
+### Dane wyjściowe
+* (`str`): Losowo wygenerowane hasło. Jeśli `length` wynosi 0 lub mniej, zwróć pusty napis `""`.
+
+### Przykłady (Dane testowe)
+* **Przykład 1:**
+  * Wejście: `8` -> Przykładowe wyjście: `"aB5!d(K$"`
+* **Przykład 2:**
+  * Wejście: `12` -> Przykładowe wyjście: `"z&9pQ_wE!sT3"`
+* **Przykład 3:**
+  * Wejście: `4` -> Przykładowe wyjście: `"R#t1"`
+
+---
+
+## Zadanie 8: Obliczanie silni
+### Opis
+Należy napisać funkcję obliczającą silnię nieujemnej liczby całkowitej. Silnia liczby $n$ ($n!$) to iloczyn wszystkich liczb naturalnych od 1 do $n$ włącznie. Z definicji $0! = 1$.
+
+### Badane umiejętności
+* Użycie pętli (`for` lub `while`).
+* Obsługa przypadków brzegowych ($0, 1$) i niepoprawnych danych (liczby ujemne).
+
+### Dane wejściowe
+* `n` (`int`): Nieujemna liczba całkowita.
+
+### Dane wyjściowe
+* (`int`): Wartość $n!$. Dla liczb ujemnych funkcja zwraca `None`.
+
+### Przykłady (Dane testowe)
+* **Przykład 1:**
+  * Wejście: `5` -> Wyjście: `120`
+* **Przykład 2:**
+  * Wejście: `0` -> Wyjście: `1`
+* **Przykład 3:**
+  * Wejście: `-3` -> Wyjście: `None`
+
+---
+
+## Zadanie 9: Sprawdzanie liczby pierwszej
+### Opis
+Należy zaimplementować funkcję, która sprawdza, czy przekazana dodatnia liczba całkowita jest liczbą pierwszą (liczba naturalna większa od 1, dzieląca się tylko przez 1 i samą siebie).
+
+### Badane umiejętności
+* Logika budowy pętli i warunków.
+* Operator reszty z dzielenia (`%`).
+* Optymalizacja (sprawdzanie dzielników do $\sqrt{n}$).
+
+### Dane wejściowe
+* `number` (`int`): Liczba całkowita.
+
+### Dane wyjściowe
+* (`bool`): `True`, jeśli pierwsza, oraz `False` w przeciwnym wypadku.
+
+### Przykłady (Dane testowe)
+* **Przykład 1:**
+  * Wejście: `11` -> Wyjście: `True`
+* **Przykład 2:**
+  * Wejście: `10` -> Wyjście: `False`
+* **Przykład 3:**
+  * Wejście: `1` -> Wyjście: `False`
+* **Przykład 4:**
+  * Wejście: `2` -> Wyjście: `True`
+
+---
+
+## Zadanie 10: Prosty parser URL
+### Opis
+Należy napisać funkcję, która przyjmuje jako napis adres URL i wyciąga z niego nazwę domeny. Funkcja powinna obsługiwać adresy URL z różnymi protokołami (`http://`, `https://`, `ftp://`) oraz z obecnością lub brakiem przedrostka `www.`.
+
+### Badane umiejętności
+* Operacje na stringach (`.split()`, `.replace()`, slicing).
+* Znajomość struktury adresu URL.
+
+### Dane wejściowe
+* `url` (`str`): Ciąg znaków z adresem URL.
+
+### Dane wyjściowe
+* (`str`): Nazwa domeny (np. `example.com`).
+
+### Przykłady (Dane testowe)
+* **Przykład 1:**
+  * Wejście: `"https://www.poisk.com/search?q=python"` -> Wyjście: `"poisk.com"`
+* **Przykład 2:**
+  * Wejście: `"http://habr.com/ru/articles/"` -> Wyjście: `"habr.com"`
+* **Przykład 3:**
+  * Wejście: `"yandex.ru"` -> Wyjście: `"yandex.ru"`
+* **Przykład 4:**
+  * Wejście: `"ftp://files1server.net/folder/file.zip"` -> Wyjście: `"files1server.net"`
+
+---
+
+# 3. Odpowiedzi i rozwiązania zadań
+
+W tej sekcji znajdują się rozwiązania do zadań teoretycznych z Sekcji 1 oraz pełne kody w Pythonie do zadań praktycznych z Sekcji 2.
+
+---
+
+## 3.1 Odpowiedzi do zadań teoretycznych (Sekcja 1)
+
+### Zadania 1.1: Obiekty i zmienne
+1. **Przykładowe zmienne i ich typy:**
+   ```python
+   nazwa = "Kawa"               # str
+   cena = 24.99                # float
+   ilosc_w_magazynie = 10      # int
+   dostepny = True             # bool
+
+   print(type(nazwa), type(cena), type(ilosc_w_magazynie), type(dostepny))
+   ```
+2. **Poprawione nazwy zmiennych:**
+   - `user_1st = "Jan"` (nazwa nie może zaczynać się od cyfry)
+   - `user_age = 25` (użycie `_` zamiast `-`)
+   - `class_name = "3A"` (`class` jest słowem zastrzeżonym w Pythonie)
+
+### Zadania 1.2: Operatory
+1. **Pole i obwód koła ($r = 7.5$):**
+   ```python
+   r = 7.5
+   pi = 3.14159
+   pole = pi * (r ** 2)     # 176.7144375
+   obwod = 2 * pi * r       # 47.12385
+   ```
+2. **Wyrażenie logiczne:**
+   ```python
+   x = 15
+   wynik = (x * 2 > 20) and (x * 2 != 30)  # Zwraca False (bo 30 == 30)
+   ```
+
+### Zadania 1.3: Kontenery
+1. **Wybór kontenera:**
+   ```python
+   zakupy = ["mleko", "chleb", "jajka", "ser", "masło"]
+   punkt_gps = (52.2297, 21.0122)
+   # Wyjaśnienie: Krotka (tuple) jest niemutowalna. Współrzędne GPS tworzą stały punkt,
+   # którego wartości nie powinny zostać przypadkowo zmienione w trakcie działania programu.
+   ```
+2. **Unikalność w zbiorze:**
+   ```python
+   imiona = {"Anna", "Piotr", "Anna", "Paweł", "Piotr"}
+   print(imiona)      # Output: {'Anna', 'Piotr', 'Paweł'}
+   print(len(imiona)) # Output: 3 (dublety zostały automatycznie usunięte)
+   ```
+
+### Zadania 1.4: Dostęp i Slicing
+1. **Wycinanie napisu:**
+   ```python
+   napis = "Programowanie w Pythonie"
+   slowo = napis[-8:]    # "Pythonie"
+   odwrocony = napis[::-1] # "einohtyP w einawomarogrp"
+   ```
+2. **Nawigacja w słowniku:**
+   ```python
+   student = {"dane": {"imie": "Marek", "nazwisko": "Kowalski"}, "oceny": [4, 5, 3, 5]}
+   nazwisko = student["dane"]["nazwisko"] # "Kowalski"
+   druga_ocena = student["oceny"][1]       # 5
+   ```
+
+### Zadania 1.5: Wbudowane funkcje
+1. **Średnia ocen:**
+   ```python
+   oceny = [4.5, 3.0, 5.0, 4.0, 2.0]
+   srednia = sum(oceny) / len(oceny) # 3.7
+   ```
+2. **Najkrótsze i najdłuższe słowo:**
+   ```python
+   slowa = ["jabłko", "banan", "gruszka", "arbuz", "kiwi"]
+   najkrotsze = min(slowa, key=len) # "kiwi"
+   najdluzsze = max(slowa, key=len)  # "gruszka"
+   ```
+
+### Zadania 1.6: Metody obiektów
+1. **Czyszczenie tekstu:**
+   ```python
+   email = "  Jan.Kowalski@Domain.COM  "
+   email_clean = email.strip().lower() # "jan.kowalski@domain.com"
+   is_com = email_clean.endswith(".com") # True
+   ```
+2. **Analiza zbiorów:**
+   ```python
+   osoba1 = {"Python", "SQL", "Git", "C++"}
+   osoba2 = {"Python", "Java", "Git", "Docker"}
+   wspolne = osoba1.intersection(osoba2) # {'Python', 'Git'}
+   tylko_osoba1 = osoba1.difference(osoba2) # {'SQL', 'C++'}
+   ```
+
+### Zadania 1.7: Argumenty w funkcjach
+1. **Kalkulator ceny brutto:**
+   ```python
+   def oblicz_cene_brutto(cena_netto, vat=0.23):
+       return cena_netto * (1 + vat)
+
+   print(oblicz_cene_brutto(100))               # 123.0 (pozycyjnie)
+   print(oblicz_cene_brutto(cena_netto=100, vat=0.08)) # 108.0 (nazwanie)
+   ```
+
+### Zadania 1.8: Formatowanie stringów
+1. **Podsumowanie koszyka:**
+   ```python
+   towar = "Kawa"
+   cena = 24.99
+   sztuki = 3
+   print(f"Zamówiono {sztuki} szt. towaru {towar}. Łączny koszt: {sztuki * cena:.2f} zł.")
+   ```
+2. **Zaokrąglanie Pi:**
+   ```python
+   pi = 3.14159265
+   print(f"{pi:.2f}") # "3.14"
+   ```
+
+---
+
+## 3.2 Rozwiązania zadań praktycznych (Sekcja 2)
+
+### Rozwiązanie Zadania 1: Odwracanie łańcucha znaków
+```python
+def reverse_string(s: str) -> str:
+    """Zwraca ciąg znaków s w odwrotnej kolejności."""
+    return s[::-1]
+
+# Testy
+print(reverse_string("Hello, World!"))  # Output: "!dlroW ,olleH"
+print(reverse_string("Python"))         # Output: "nohtyP"
+print(reverse_string(""))               # Output: ""
+```
+
+---
+
+### Rozwiązanie Zadania 2: Wyszukiwanie najdłuższego słowa
+```python
+def find_longest_word(sentence: str) -> str:
+    """Znajduje pierwsze najdłuższe słowo w podanym zdaniu."""
+    words = sentence.split()
+    if not words:
+        return ""
+    
+    longest_word = words[0]
+    for word in words:
+        if len(word) > len(longest_word):
+            longest_word = word
+    return longest_word
+
+# Testy
+print(find_longest_word("Python jest potężnym i uniwersalnym językiem programowania")) # "programowania"
+print(find_longest_word("Tworzenie aplikacji wymaga znajomości różnych technologii"))     # "technologii"
+print(find_longest_word("trzy dwa raz"))                                              # "trzy"
+```
+
+---
+
+### Rozwiązanie Zadania 3: Sprawdzanie palindromu
+```python
+def is_palindrome(s: str) -> bool:
+    """Sprawdza, czy napis s jest palindromem (z pominięciem spacji, interpunkcji i wielkości liter)."""
+    cleaned = ''.join(char.lower() for char in s if char.isalnum())
+    return cleaned == cleaned[::-1]
+
+# Testy
+print(is_palindrome("А роза упала на лапу Азора"))       # True
+print(is_palindrome("race a car"))                      # False
+print(is_palindrome("A man, a plan, a canal: Panama"))   # True
+```
+
+---
+
+### Rozwiązanie Zadania 4: Suma elementów listy
+```python
+def sum_numeric_elements(items: list):
+    """Zwraca sumę elementów int oraz float znajdujących się w liście items."""
+    total = 0
+    for item in items:
+        # W Pythonie bool dziedziczy po int (isinstance(True, int) == True),
+        # dlatego wyraźnie wykluczamy typ bool!
+        if isinstance(item, (int, float)) and not isinstance(item, bool):
+            total += item
+    return total
+
+# Testy
+print(sum_numeric_elements([1, 2, 3, 4, 5]))                       # 15
+print(sum_numeric_elements([10, "hello", 20.5, True, None, 30]))   # 60.5
+print(sum_numeric_elements(["a", "b", "c"]))                       # 0
+print(sum_numeric_elements([]))                                    # 0
+```
+
+---
+
+### Rozwiązanie Zadania 5: Usuwanie duplikatów z listy
 ```python
 def remove_duplicates(items: list) -> list:
     """Zwraca nową listę bez duplikatów z zachowaniem oryginalnej kolejności."""
@@ -488,40 +753,12 @@ print(remove_duplicates([]))           # Output: []
 
 ---
 
-## Zadanie 6: Analiza częstotliwości słów w tekście
-### Opis
-Należy napisać funkcję wykonującą analizę częstotliwości słów w przekazanym tekście. Funkcja powinna zwracać słownik, w którym kluczami są unikalne słowa z tekstu, a wartościami — liczba ich powtórzeń. Analiza nie powinna brać pod uwagę wielkości liter, a znaki interpunkcyjne należy zignorować.
-
-### Badane umiejętności
-* Praca ze słownikami (tworzenie, dodawanie i aktualizowanie par `klucz: wartość`).
-* Operacje na stringach (`.lower()`, `.split()`, usuwanie znaku interpunkcji).
-* Iteracja po liście słów.
-* Użycie metody słownika `.get()` dla bezpiecznego dostępu do wartości.
-
-### Dane wejściowe
-* `text` (`str`): Tekst do analizy.
-
-### Dane wyjściowe
-* (`dict`): Słownik, w którym klucze to słowa pisane małymi literami, a wartości to liczba ich wystąpień.
-
-### Przykłady (Dane testowe)
-* **Przykład 1:**
-  * Wejście: `"Hello world hello"`
-  * Wyjście: `{'hello': 2, 'world': 1}`
-* **Przykład 2 (z wielkością liter i interpunkcją):**
-  * Wejście: `"The quick brown fox jumps over the lazy dog. The dog was lazy."`
-  * Wyjście: `{'the': 3, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 2, 'dog': 2, 'was': 1}`
-* **Przykład 3 (pusty napis):**
-  * Wejście: `""`
-  * Wyjście: `{}`
-
-### Rozwiązanie w Pythonie
+### Rozwiązanie Zadania 6: Analiza częstotliwości słów w tekście
 ```python
 import string
 
 def word_frequency(text: str) -> dict:
     """Zwraca słownik częstotliwości występowania słów w tekście."""
-    # Usuwanie interpunkcji i konwersja na małe litery
     cleaned_text = text.translate(str.maketrans('', '', string.punctuation)).lower()
     words = cleaned_text.split()
     
@@ -543,35 +780,7 @@ print(word_frequency(""))
 
 ---
 
-## Zadanie 7: Generator haseł
-### Opis
-Należy stworzyć funkcję do generowania losowego hasła o podanej długości. Hasło powinno składać się z zestawu znaków obejmującego małe i wielkie litery alfabetu łacińskiego, cyfry oraz znaki specjalne (`!@#$%^&*()_+-=[]{}|;:,.<>/?`).
-
-### Badane umiejętności
-* Użycie modułu `random` (`random.choice`).
-* Wykorzystanie stałych napisowych z modułu `string`.
-* Łączenie listy znaków w string za pomocą `.join()`.
-* Obsługa warunków brzegowych.
-
-### Dane wejściowe
-* `length` (`int`): Oczekiwana długość hasła.
-
-### Dane wyjściowe
-* (`str`): Losowo wygenerowane hasło. Jeśli `length` jest mniejsze lub równe 0, funkcja powinna zwrócić pusty napis `""`.
-
-### Przykłady (Dane testowe)
-*(Wyniki są losowe, przykłady przedstawiają możliwy wygląd wyjścia)*
-* **Przykład 1:**
-  * Wejście: `8`
-  * Przykładowe wyjście: `"aB5!d(K$"`
-* **Przykład 2:**
-  * Wejście: `12`
-  * Przykładowe wyjście: `"z&9pQ_wE!sT3"`
-* **Przykład 3 (przypadek brzegowy):**
-  * Wejście: `4`
-  * Przykładowe wyjście: `"R#t1"`
-
-### Rozwiązanie w Pythonie
+### Rozwiązanie Zadania 7: Generator haseł
 ```python
 import random
 import string
@@ -592,36 +801,7 @@ print(generate_password(0))   # ""
 
 ---
 
-## Zadanie 8: Obliczanie silni
-### Opis
-Należy napisać funkcję obliczającą silnię nieujemnej liczby całkowitej. Silnia liczby $n$ (oznaczana jako $n!$) to iloczyn wszystkich liczb naturalnych od 1 do $n$ włącznie. Z definicji silnia $0!$ wynosi `1`.
-
-### Badane umiejętności
-* Użycie pętli (`for` lub `while`) do obliczeń iteracyjnych.
-* (Dla zaawansowanych): Implementacja algorytmu przy użyciu rekurencji.
-* Obsługa przypadków brzegowych ($0, 1$) i niepoprawnych danych wejściowych (liczby ujemne).
-
-### Dane wejściowe
-* `n` (`int`): Nieujemna liczba całkowita.
-
-### Dane wyjściowe
-* (`int`): Wartość $n!$. W przypadku przekazania liczby ujemnej funkcja zwraca `None`.
-
-### Przykłady (Dane testowe)
-* **Przykład 1:**
-  * Wejście: `5`
-  * Wyjście: `120` *(ponieważ 1 * 2 * 3 * 4 * 5 = 120)*
-* **Przykład 2:**
-  * Wejście: `0`
-  * Wyjście: `1`
-* **Przykład 3:**
-  * Wejście: `1`
-  * Wyjście: `1`
-* **Przykład 4 (niepoprawne dane):**
-  * Wejście: `-3`
-  * Wyjście: `None`
-
-### Rozwiązanie w Pythonie
+### Rozwiązanie Zadania 8: Obliczanie silni
 ```python
 def factorial(n: int):
     """Zwraca silnię n! dla nieujemnych liczb całkowitych."""
@@ -641,37 +821,7 @@ print(factorial(-3))  # None
 
 ---
 
-## Zadanie 9: Sprawdzanie liczby pierwszej
-### Opis
-Należy zaimplementować funkcję, która sprawdza, czy przekazana dodatnia liczba całkowita jest liczbą pierwszą. Liczba pierwsza to liczba naturalna większa od 1, która posiada dokładnie dwa dzielniki: 1 oraz samą siebie.
-
-### Badane umiejętności
-* Logika budowy pętli i instrukcji warunkowych.
-* Użycie operatora reszty z dzielenia (`%`).
-* Optymalizacja (sprawdzanie dzielników tylko do pierwiastka kwadratowego z liczby: $\sqrt{n}$).
-* Obsługa przypadków brzegowych ($0, 1, 2$).
-
-### Dane wejściowe
-* `number` (`int`): Dodatnia liczba całkowita do weryfikacji.
-
-### Dane wyjściowe
-* (`bool`): `True`, jeśli liczba jest pierwsza, oraz `False` w przeciwnym wypadku.
-
-### Przykłady (Dane testowe)
-* **Przykład 1:**
-  * Wejście: `11`
-  * Wyjście: `True`
-* **Przykład 2:**
-  * Wejście: `10`
-  * Wyjście: `False` *(dzielniki: 1, 2, 5, 10)*
-* **Przykład 3 (przypadek brzegowy):**
-  * Wejście: `1`
-  * Wyjście: `False`
-* **Przykład 4 (przypadek brzegowy):**
-  * Wejście: `2`
-  * Wyjście: `True`
-
-### Rozwiązanie w Pythonie
+### Rozwiązanie Zadania 9: Sprawdzanie liczby pierwszej
 ```python
 def is_prime(number: int) -> bool:
     """Sprawdza, czy liczba całkowita number jest liczbą pierwszą."""
@@ -682,7 +832,6 @@ def is_prime(number: int) -> bool:
     if number % 2 == 0:
         return False
     
-    # Sprawdzanie nieparzystych dzielników do pierwiastka z liczby
     for d in range(3, int(number**0.5) + 1, 2):
         if number % d == 0:
             return False
@@ -697,47 +846,15 @@ print(is_prime(2))   # True
 
 ---
 
-## Zadanie 10: Prosty parser URL
-### Opis
-Należy napisać funkcję, która przyjmuje jako napis adres URL i wyciąga z niego nazwę domeny. Funkcja powinna poprawnie obsługiwać adresy URL z różnymi protokołami (`http://`, `https://`, `ftp://`) oraz z obecnością lub brakiem przedrostka `www.`.
-
-### Badane umiejętności
-* Operacje na stringach: `.split()`, `.find()`, `.replace()`, slicing.
-* Znajomość podstawowej struktury adresu URL.
-* Instrukcje warunkowe do obsługi różnorodnych formatów wejściowych.
-
-### Dane wejściowe
-* `url` (`str`): Ciąg znaków zawierający adres URL.
-
-### Dane wyjściowe
-* (`str`): Ciąg znaków zawierający tylko nazwę domeny (np. `example.com`).
-
-### Przykłady (Dane testowe)
-* **Przykład 1:**
-  * Wejście: `"https://www.poisk.com/search?q=python"`
-  * Wyjście: `"poisk.com"`
-* **Przykład 2:**
-  * Wejście: `"http://habr.com/ru/articles/"`
-  * Wyjście: `"habr.com"`
-* **Przykład 3 (bez protokołu):**
-  * Wejście: `"yandex.ru"`
-  * Wyjście: `"yandex.ru"`
-* **Przykład 4 (inny protokół i ścieżka):**
-  * Wejście: `"ftp://files1server.net/folder/file.zip"`
-  * Wyjście: `"files1server.net"`
-
-### Rozwiązanie w Pythonie
+### Rozwiązanie Zadania 10: Prosty parser URL
 ```python
 def parse_domain(url: str) -> str:
     """Wyciąga nazwę domeny z przekazanego adresu URL."""
-    # Usunięcie protokołu (np. http://, https://, ftp://)
     if "://" in url:
         url = url.split("://")[1]
         
-    # Usunięcie ścieżki i parametrów (wszystko po pierwszym '/' lub '?')
     url = url.split("/")[0].split("?")[0]
     
-    # Usunięcie prefiksu 'www.'
     if url.startswith("www."):
         url = url[4:]
         
