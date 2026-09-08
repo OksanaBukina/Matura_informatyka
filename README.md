@@ -173,7 +173,44 @@ print(zbior1)   # Output np.: {False, 3, 5, 6, 'kot', 'pies'}
 
 ## 1.4 Dostęp do danych w kontenerach (Indeksowanie i Slicing)
 
+W przypadku `str`, `list` i `tuple` używamy nawiasów kwadratowych `[]` do indeksowania liczbowego (od `0`). Słowniki `dict` indeksujemy za pomocą ich **kluczy**.
+
+> [!WARNING]
+> Zbiory (`set`) nie są indeksowane — użycie `zbior[0]` zgłosi błąd `TypeError`.
+
+### Składnia wycinania (Slicing): `sekwencja[start:stop:step]`
+- `start`: indeks początkowy (włącznie)
+- `stop`: indeks końcowy (wyłącznie)
+- `step`: krok (opcjonalnie, domyślnie 1)
+- Ujemny indeks (np. `-1`) oznacza dostęp od końca sekwencji.
+
+### Przykłady wycinania na słowie `s = "INFORMATYKA"`:
+
+| Wyrażenie | Opis | Wynik dla `"INFORMATYKA"` |
+| :--- | :--- | :--- |
+| `s[::-1]` | Odwrócenie ciągu znaków (sprawdzanie palindromu) | `"AKYTAMROFNI"` |
+| `s[-8:]` | Ostatnie 8 znaków ciągu | `"ORMATYKA"` |
+| `s[:8]` | Pierwsze 8 znaków ciągu | `"INFORMAT"` |
+| `s[:-1]` | Ciąg bez ostatniego znaku | `"INFORMATYK"` |
+| `s[1:]` | Ciąg bez pierwszego znaku | `"NFORMATYKA"` |
+| `s[1:-1]` | Ciąg bez pierwszego i ostatniego znaku | `"NFORMATYK"` |
+| `s[::2]` | Znaki na indeksach parzystych (co 2-gi znak) | `"IFRAYA"` |
+| `s[1::2]` | Znaki na indeksach nieparzystych | `"NOMTK"` |
+
+### Przykłady kodu w Pythonie:
+
 ```python
+s = "INFORMATYKA"
+
+print(s[::-1])    # "AKYTAMROFNI" — odwrócenie ciągu znaków (sprawdzanie palindromu)
+print(s[-8:])     # "ORMATYKA"   — ostatnie 8 znaków ciągu
+print(s[:8])      # "INFORMAT"   — pierwsze 8 znaków ciągu
+print(s[:-1])     # "INFORMATYK" — строка bez ostatniego znaku
+print(s[1:])      # "NFORMATYKA" — строка bez pierwszego znaku
+print(s[1:-1])    # "NFORMATYK"  — строка bez pierwszego i ostatniego znaku
+print(s[::2])     # "IFRAYA"     — tylko indeksy parzyste (co 2-gi symbol)
+print(s[1::2])    # "NOMTK"      — tylko indeksy nieparzyste
+
 lista1 = [3, 5, 6, 3, 'pies', 'kot', False, 5, 'winogrona']
 prosty_lancuch1 = 'jakiś przykład'
 slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
@@ -269,7 +306,7 @@ print(f'Za 5 lat będziesz mieć {wiek + 5} lat.')
 
 # 2. Praktyka — Zadania programistyczne
 
-Ten rozdział zawiera **10 zadań praktycznych** w języku polskim. 
+Ten rozdział zawiera **10 zadań praktycznych** w języku polskim. **Odpowiedzi i rozwiązania do wszystkich zadań znajdują się w [Sekcji 3 na końcu dokumentu](#3-odpowiedzi-i-rozwiązania-zadań).**
 
 ---
 
