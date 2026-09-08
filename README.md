@@ -1,6 +1,5 @@
-# 🐍 Podstawy języka Python — Ściąga i Konspekt dla Programistów
-
-Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę GitHub. Zawiera omówienie typów danych, operatorów, kontenerów, funkcji wbudowanych, metod obiektów oraz formatowania tekstu, wraz z czytelnymi przykładami kodu oraz **samodzielnymi zadaniami** po każdym dziale.
+# 🐍 Podstawy języka Python
+Kompleksowy konspekt wiedzy z podstaw języka Python. Zawiera omówienie typów danych, operatorów, kontenerów, funkcji wbudowanych, metod obiektów oraz formatowania tekstu, wraz z czytelnymi przykładami kodu oraz **samodzielnymi zadaniami** po każdym dziale.
 
 ---
 
@@ -21,8 +20,8 @@ Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę
 Wszystko w Pythonie jest **obiektem** posiadającym określony **typ**. Zmienne to nazwy przypisane do obiektów w pamięci.
 
 ### Podstawowe typy danych:
-* **`int`** — liczby całkowite, np. `10`, `-3`, `0`
-* **`float`** — liczby zmiennoprzecinkowe (z częścią dziesiętną), np. `7.41`, `-0.006`
+* **`int`** — liczby całkowite, np. `20`, `-3`, `0`
+* **`float`** — liczby zmiennoprzecinkowe (z częścią dziesiętną), np. `9.57`, `-0.03`
 * **`str`** — ciągi znaków (łańcuchy ujęte w cudzysłów), np. `'tekst'`, `"tekst"`, `'''multiline'''`
 * **`bool`** — wartości logiczne (`True`, `False`)
 * **`NoneType`** — specjalny typ reprezentujący brak wartości (`None`)
@@ -38,8 +37,8 @@ Wszystko w Pythonie jest **obiektem** posiadającym określony **typ**. Zmienne 
 1. **Tworzenie zmiennych:** Stwórz zmienne opisujące Twój ulubiony produkt: `nazwa` (`str`), `cena` (`float`), `ilosc_w_magazynie` (`int`) oraz `dostepny` (`bool`). Wyświetl typ każdej z nich za pomocą funkcji `type()`.
 2. **Poprawa błędów:** Popraw poniższe błędne nazwy zmiennych tak, aby były zgodne z zasadami Pythona:
    - `1st_user = "Jan"`
-   - `user-age = 25`
-   - `class = "3A"`
+   - `user-age = 18`
+   - `class = "2A"`
 
 ---
 
@@ -83,22 +82,22 @@ Operatory to specjalne symbole wykonujące operacje na wartościach.
 liczba1 = 1
 liczba2 = 2
 liczba3 = 3
-liczba4 = 42
-liczba5 = 2138
-liczba6 = -68
-liczba7 = 7.312
+liczba4 = 45
+liczba5 = 2130
+liczba6 = -25
+liczba7 = 8.132
 
 # Operacje arytmetyczne
 print(liczba1 + liczba2)   # 3
 print(liczba2 - liczba3)   # -1
-print(liczba3 * liczba4)   # 126
-print(liczba4 / liczba5)   # 0.019644527595884004
-print(liczba5 ** liczba2)  # 4571044
+print(liczba3 * liczba4)   # 135
+print(liczba4 / liczba5)   # 0.02112676056
+print(liczba5 ** liczba2)  # 4536900
 
 # Operatory przypisania z modyfikacją
-liczba4 += 4   # liczba4 wynosi teraz 46
-liczba6 -= 2   # liczba6 wynosi teraz -70
-liczba4 *= 5   # liczba4 wynosi teraz 230
+liczba4 += 4   # liczba4 wynosi teraz 49
+liczba6 -= 2   # liczba6 wynosi teraz -27
+liczba4 *= 5   # liczba4 wynosi teraz 225
 
 # Łączenie operatorów
 liczba8 = liczba1 + liczba2 * liczba3   # 1 + (2 * 3) = 7
