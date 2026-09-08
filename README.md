@@ -255,15 +255,85 @@ print(abs(-12))            # 12
 
 ## 1.6 Atrybuty obiektów (Metody i Właściwości)
 
-```python
-napis = 'tHis is a sTriNg'
-print(napis.lower())       # 'this is a string'
-print(napis.upper())       # 'THIS IS A STRING'
-print(napis.replace('is', 'XYZ')) # 'tXYZ XYZ a sTriNg'
+Dostęp do atrybutów obiektu uzyskuje się za pomocą kropki: `obiekt.atrybut`.
+- **Metoda:** wywoływalny atrybut (funkcja związana z obiektem, np. `napis.upper()`).
+- **Właściwość (Property):** dana / informacja opisująca obiekt.
+- `dir(obiekt)` — zwraca listę wszystkich dostępnych atrybutów obiektu.
 
-lista = [1, 2, 3]
-lista.append(4)
-lista.extend([5, 6])
+---
+
+### Metody dla łańcuchów znaków (`str`)
+
+* `.capitalize()` — Pierwszy znak wielką literą.
+* `.upper()` — Wszystkie znaki wielkimi literami.
+* `.lower()` — Wszystkie znaki małymi literami.
+* `.count(sub)` — Zlicza wystąpienia podłańcucha.
+* `.startswith(sub)` — Sprawdza, czy napis zaczyna się od podłańcucha `sub`.
+* `.endswith(sub)` — Sprawdza, czy napis kończy się podłańcuchem `sub`.
+* `.replace(old, new[, count])` — Zastępuje wystąpienia tekstu.
+
+#### Przykłady i objaśnienie metod łańcuchowych:
+
+```python
+jakis_lancuch = 'tHis is a sTriNg'
+
+# Zwróć wersję łańcucha z wielką pierwszą literą
+print(jakis_lancuch.capitalize())   # Output: 'This is a string'
+
+# Zwróć wersję łańcucha pisaną wielkimi literami
+print(jakis_lancuch.upper())        # Output: 'THIS IS A STRING'
+
+# Zwróć wersję łańcucha pisaną małymi literami
+print(jakis_lancuch.lower())        # Output: 'this is a string'
+
+# Zlicz liczbę wystąpień podłańcucha w łańcuchu
+print(jakis_lancuch.count('i'))     # Output: 3
+print(jakis_lancuch.count('i', 7))  # Output: 1 (zliczanie od indeksu 7)
+print(jakis_lancuch.count('is'))    # Output: 2
+
+# Czy łańcuch zaczyna się od 'this'?
+print(jakis_lancuch.startswith('this'))  # Output: False (wielkość liter ma znaczenie!)
+
+# Czy łańcuch pisany małymi literami zaczyna się od 'this'? (Łączenie metod .lower() i .startswith())
+print(jakis_lancuch.lower().startswith('this'))  # Output: True
+
+# Czy łańcuch kończy się na 'Ng'?
+print(jakis_lancuch.endswith('Ng'))  # Output: True
+
+# Zwróć wersję łańcucha z podłańcuchem zastąpionym czymś innym
+print(jakis_lancuch.replace('is', 'XYZ'))   # Output: 'tXYZ XYZ a sTriNg'
+print(jakis_lancuch.replace('i', '!'))      # Output: 'tH!s !s a sTriNg'
+print(jakis_lancuch.replace('i', '!', 2))   # Output: 'tH!s !s a sTriNg' (zastąp tylko pierwsze 2 wystąpienia)
+```
+
+---
+
+### Metody dla list (`list`)
+
+```python
+jakas_lista = [1, 2, 3, 'witaj']
+
+# Dodaj pojedynczy element na koniec listy
+jakas_lista.append(True)
+print(jakas_lista)   # [1, 2, 3, 'witaj', True]
+
+# Dodaj wiele elementów do listy
+jakas_lista.extend([4, 5, 6])
+print(jakas_lista)   # [1, 2, 3, 'witaj', True, 4, 5, 6]
+
+# Usuń pojedynczy element z listy
+jakas_lista.remove('witaj')
+print(jakas_lista)   # [1, 2, 3, True, 4, 5, 6]
+
+# Usuń i zwróć element z końca listy
+ostatni = jakas_lista.pop()
+print(ostatni)       # 6
+print(jakas_lista)   # [1, 2, 3, True, 4, 5]
+
+# Usuń i zwróć element o podanym indeksie
+pierwszy = jakas_lista.pop(0)
+print(pierwszy)      # 1
+print(jakas_lista)   # [2, 3, True, 4, 5]
 ```
 
 ---
