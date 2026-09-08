@@ -250,7 +250,7 @@ print(f'Za 5 lat będziesz mieć {wiek + 5} lat.')
 
 # 2. Praktyka — Zadania programistyczne
 
-Ten rozdział zawiera **10 zadań praktycznych** w języku polskim. **Odpowiedzi i rozwiązania do wszystkich zadań znajdują się w [Sekcji 3 na końcu dokumentu](#3-odpowiedzi-i-rozwiązania-zadań).**
+Ten rozdział zawiera **10 zadań praktycznych** w języku polskim. 
 
 ---
 
