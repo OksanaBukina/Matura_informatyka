@@ -283,6 +283,7 @@ Dostęp do atrybutów obiektu uzyskuje się za pomocą kropki: `obiekt.atrybut`.
 * `.startswith(sub)` — Sprawdza, czy napis zaczyna się od podłańcucha `sub`.
 * `.endswith(sub)` — Sprawdza, czy napis kończy się podłańcuchem `sub`.
 * `.replace(old, new[, count])` — Zastępuje wystąpienia tekstu.
+* `strip("#!")` - usuwania białych (domyślnie bez parametru) lub wskazanych znaków (z parametru) na początku i na końcu ciągów 
 
 #### Przykłady i objaśnienie metod łańcuchowych:
 
@@ -316,6 +317,9 @@ print(jakis_lancuch.endswith('Ng'))  # Output: True
 print(jakis_lancuch.replace('is', 'XYZ'))   # Output: 'tXYZ XYZ a sTriNg'
 print(jakis_lancuch.replace('i', '!'))      # Output: 'tH!s !s a sTriNg'
 print(jakis_lancuch.replace('i', '!', 2))   # Output: 'tH!s !s a sTriNg' (zastąp tylko pierwsze 2 wystąpienia)
+
+text2 = "###hello!!!"
+print(text2.strip("#!"))  # "hello"
 ```
 
 ---
