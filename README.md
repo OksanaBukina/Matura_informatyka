@@ -12,8 +12,9 @@ Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę
   - [1.4 Dostęp do danych w kontenerach (Indeksowanie i Slicing)](#14-dostęp-do-danych-w-kontenerach-indeksowanie-i-slicing)
   - [1.5 Wbudowane funkcje i obiekty wywoływalne](#15-wbudowane-funkcje-i-obiekty-wywoływalne)
   - [1.6 Atrybuty obiektów (Metody i Właściwości)](#16-atrybuty-obiektów-metody-i-właściwości)
-  - [1.7 Argumenty pozycyjne i nazwane w funkcjach](#17-argumenty-pozycyjne-i-nazwane-w-funkcjach)
-  - [1.8 Formatowanie łańcuchów znaków (Strings)](#18-formatowanie-łańcuchów-znaków-strings)
+  - [1.7 Funkcja filtrowanie listy](#17-funkcja-filtrowanie-listy)
+  - [1.8 Argumenty pozycyjne i nazwane w funkcjach](#18-argumenty-pozycyjne-i-nazwane-w-funkcjach)
+  - [1.9 Formatowanie łańcuchów znaków (Strings)](#19-formatowanie-łańcuchów-znaków-strings)
 - [2. Praktyka — Zadania programistyczne](#2-praktyka--zadania-programistyczne)
   - [Zadanie 1: Odwracanie łańcucha znaków](#zadanie-1-odwracanie-łańcucha-znaków)
   - [Zadanie 2: Wyszukiwanie najdłuższego słowa](#zadanie-2-wyszukiwanie-najdłuższego-słowa)
@@ -256,7 +257,6 @@ print(sorted([3, 1, 2]))   # [1, 2, 3]
 print(sum([10, 20, 30]))   # 60
 print(abs(-12))            # 12
 
-
 ```
 
 ---
@@ -388,6 +388,7 @@ print(wynik4) #{5, 6}
 
 ---
 ## 1.7 Funkcja filtrowanie listy
+`filter(fun, iter)`
 Funkcja przyjmuje dwa parametry:
 * `fun:` funkcja warunkowa (predykat), do której przekazywany jest po kolei każdy element kolekcji. Zwraca ona `True`, jeśli dany element spełnia określony warunek, w przeciwnym razie zwraca False.
 * `iter:` filtrowana kolekcja (obiekt iterowalny, np. lista, krotka).
@@ -406,6 +407,7 @@ Napisz program, który wybierze z podanej listy liczby wyłącznie liczby parzys
 Oczekiwany wynik:
 `[2, 4, 6]`
 
+---
 ## 1.8 Argumenty pozycyjne i nazwane w funkcjach
 
 ```python
@@ -424,7 +426,7 @@ wypisz_argumenty(arg3='C', arg1='A', arg2='B') # Nazwane
 
 ---
 
-## 1.8 Formatowanie łańcuchów znaków (Strings)
+## 1.9 Formatowanie łańcuchów znaków (Strings)
 
 ```python
 imie = 'Alicja'
