@@ -197,6 +197,13 @@ W przypadku `str`, `list` i `tuple` używamy nawiasów kwadratowych `[]` do inde
 | `s[::2]` | Znaki na indeksach parzystych (co 2-gi znak) | `"IFRAYA"` |
 | `s[1::2]` | Znaki na indeksach nieparzystych | `"NOMTK"` |
 
+###| .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
+koszyk = {"jabłka": 5, "banany": 3, "pomarańcze": 2}
+print(koszyk.items())
+# Output: dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
+print(list(koszyk.items())[1])
+# Output: ('banany', 3)
+
 ### Przykłady kodu w Pythonie:
 
 ```python
@@ -215,9 +222,13 @@ lista1 = [3, 5, 6, 3, 'pies', 'kot', False, 5, 'winogrona']
 prosty_lancuch1 = 'jakiś przykład'
 slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
 
-print(lista1[0])              # 3
-print(prosty_lancuch1[3:8])   # 'iś pr'
-print(slownik1['imię'])        # 'Jadwiga'
+print(lista1[0])                    # 3
+print(prosty_lancuch1[3:8])         # 'iś pr'
+print(slownik1['imię'])             # 'Jadwiga'
+print(slownik1['ulub_jedzenie'][1]) #'owoce'
+print(list(slownik1.items())[1:2])  # [('wiek', 23)]
+print(list(slownik1.items())[::2])  #[('imię', 'Jadwiga'), ('ulub_jedzenie', ['pizza', 'owoce', 'ryba'])]
+
 ```
 
 ---
