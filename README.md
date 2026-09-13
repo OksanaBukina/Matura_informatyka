@@ -26,7 +26,7 @@ Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę
   - [Zadanie 8: Obliczanie silni](#zadanie-8-obliczanie-silni)
   - [Zadanie 9: Sprawdzanie liczby pierwszej](#zadanie-9-sprawdzanie-liczby-pierwszej)
   - [Zadanie 10: Prosty parser URL](#zadanie-10-prosty-parser-url)
-  - [Zadanie 11: Generator opisów w menu kawiarni] (#zadanie-11-generator-opisów-w-menu-kawiarni)
+  - [Zadanie 11: Generator opisów w menu kawiarni](#zadanie-11-generator-opisów-w-menu-kawiarni)
 - [3. Odpowiedzi i rozwiązania zadań](#3-odpowiedzi-i-rozwiązania-zadań)
   - [3.1 Odpowiedzi do zadań teoretycznych (Sekcja 1)](#31-odpowiedzi-do-zadań-teoretycznych-sekcja-1)
   - [3.2 Rozwiązania zadań praktycznych (Sekcja 2)](#32-rozwiązania-zadań-praktycznych-sekcja-2)
