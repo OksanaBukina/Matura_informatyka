@@ -389,15 +389,22 @@ print(wynik4) #{5, 6}
 ---
 ## 1.7 Funkcja filtrowanie listy
 Funkcja przyjmuje dwa parametry:
-`fun:` funkcja warunkowa (predykat), do której przekazywany jest po kolei każdy element kolekcji. Zwraca ona `True`, jeśli dany element spełnia określony warunek, w przeciwnym razie zwraca False.
-`iter:` filtrowana kolekcja (obiekt iterowalny, np. lista, krotka).
+* `fun:` funkcja warunkowa (predykat), do której przekazywany jest po kolei każdy element kolekcji. Zwraca ona `True`, jeśli dany element spełnia określony warunek, w przeciwnym razie zwraca False.
+* `iter:` filtrowana kolekcja (obiekt iterowalny, np. lista, krotka).
 
 W wyniku funkcja zwraca przefiltrowane elementy (tylko te, dla których funkcja fun zwróciła wartość `True`).
 
 ```python
 numbers = [-5, -4, -3 ,-2, -1, 0, 1, 2, 3, 4, 5]
 result = filter(lambda x: x > - 1, numbers)
-for x in result: print(x, end=" ")  # 0 1 2 3 4 5 
+for x in result: print(x, end=" ")  # 0 1 2 3 4 5
+```
+---
+### ✏️ Samodzielne zadania: filtrowanie listy
+Dana jest lista liczb całkowitych `liczby = [1, 2, 3, 4, 5, 6]`
+Napisz program, który wybierze z podanej listy liczby wyłącznie liczby parzyste i wyświetli je na ekranie.
+Oczekiwany wynik:
+`[2, 4, 6]`
 
 ## 1.8 Argumenty pozycyjne i nazwane w funkcjach
 
