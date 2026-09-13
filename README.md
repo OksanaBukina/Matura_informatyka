@@ -197,13 +197,7 @@ W przypadku `str`, `list` i `tuple` używamy nawiasów kwadratowych `[]` do inde
 | `s[::2]` | Znaki na indeksach parzystych (co 2-gi znak) | `"IFRAYA"` |
 | `s[1::2]` | Znaki na indeksach nieparzystych | `"NOMTK"` |
 
-### .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
-```python
-koszyk = {"jabłka": 5, "banany": 3, "pomarańcze": 2}
-print(koszyk.items()) # dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
-print(list(koszyk.items())[1]) # Output: ('banany', 3)
-```
----
+
 ### Przykłady kodu w Pythonie:
 
 ```python
@@ -220,28 +214,35 @@ print(s[1::2])    # "NOMTK"      — tylko indeksy nieparzyste
 
 lista1 = [3, 5, 6, 3, 'pies', 'kot', False, 5, 'winogrona']
 prosty_lancuch1 = 'jakiś przykład'
-slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
 
 print(lista1[0])                    # 3
 print(prosty_lancuch1[3:8])         # 'iś pr'
+```
+
+---
+### .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
+```python
+koszyk = {"jabłka": 5, "banany": 3, "pomarańcze": 2}
+print(koszyk.items()) # dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
+print(list(koszyk.items())[1]) # Output: ('banany', 3)
+
+slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
 print(slownik1['imię'])             # 'Jadwiga'
 print(slownik1['ulub_jedzenie'][1]) #'owoce'
 print(list(slownik1.items())[1:2])  # [('wiek', 23)]
 print(list(slownik1.items())[::2])  #[('imię', 'Jadwiga'), ('ulub_jedzenie', ['pizza', 'owoce', 'ryba'])]
-
 ```
-
 ---
 
 ### ✏️ Samodzielne zadania: Dostęp i Slicing
 1. **Zabawy ze slicingiem tekstu:** Mając zmienną `slowo = "MATEMATYKA"`:
-   - Wyciągnij pierwsze 5 znaków słowa (`slowo[:5]`).
-   - Wyciągnij ostatnie 4 znaki słowa (`slowo[-4:]`).
-   - Wyciągnij tekst bez pierwszego i ostatniego znaku (`slowo[1:-1]`).
-   - Odwróć słowo za pomocą wycinania (`slowo[::-1]`).
-   - Wyciągnij tylko znaki na indeksach parzystych (`slowo[::2]`).
+   - Wyciągnij pierwsze 5 znaków słowa .
+   - Wyciągnij ostatnie 4 znaki słowa .
+   - Wyciągnij tekst bez pierwszego i ostatniego znaku .
+   - Odwróć słowo za pomocą wycinania .
+   - Wyciągnij tylko znaki na indeksach parzystych (.
 2. **Wycinanie nieparzystych indeksów oraz nawigacja:**
-   - Dla napisu `napis = "Egzamin Maturalny"` wyciągnij znaki na indeksach nieparzystych (`napis[1::2]`).
+   - Dla napisu `napis = "Egzamin Maturalny"` wyciągnij znaki na indeksach nieparzystych .
    - Ze słownika `student = {"dane": {"imie": "Marek", "nazwisko": "Kowalski"}, "oceny": [4, 5, 3, 5]}` pobierz nazwisko oraz drugą ocenę z listy.
 
 ---
