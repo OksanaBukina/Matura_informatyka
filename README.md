@@ -197,12 +197,10 @@ W przypadku `str`, `list` i `tuple` używamy nawiasów kwadratowych `[]` do inde
 | `s[::2]` | Znaki na indeksach parzystych (co 2-gi znak) | `"IFRAYA"` |
 | `s[1::2]` | Znaki na indeksach nieparzystych | `"NOMTK"` |
 
-###| .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
+### .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
 koszyk = {"jabłka": 5, "banany": 3, "pomarańcze": 2}
-print(koszyk.items())
-# Output: dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
-print(list(koszyk.items())[1])
-# Output: ('banany', 3)
+print(koszyk.items()) # dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
+print(list(koszyk.items())[1]) # Output: ('banany', 3)
 
 ### Przykłady kodu w Pythonie:
 
