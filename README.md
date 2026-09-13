@@ -255,6 +255,8 @@ print(len([1, 2, 3]))      # 3
 print(sorted([3, 1, 2]))   # [1, 2, 3]
 print(sum([10, 20, 30]))   # 60
 print(abs(-12))            # 12
+
+
 ```
 
 ---
@@ -285,7 +287,11 @@ Dostęp do atrybutów obiektu uzyskuje się za pomocą kropki: `obiekt.atrybut`.
 * `.replace(old, new[, count])` — Zastępuje wystąpienia tekstu.
 * `strip("#!")` - usuwania białych (domyślnie bez parametru) lub wskazanych znaków (z parametru) na początku i na końcu ciągów
 * `.split` - zamiana tekstu na listę i listy na tekst
-*  .join() - zamiana listy na tekst
+* ` .join()` - zamiana listy na tekst
+* `.clear()` - usuwa wszystkie elementy z listy
+* `.sort([key])`- sortuje elementy listy. Domyślnie sortuje w porządku rosnącym (niemalejącym), ale za pomocą parametru key można przekazać funkcję określającą kryterium sortowania.
+* `copy()` -tworzy kopię listy
+  
 
 #### Przykłady i objaśnienie metod łańcuchowych:
 
@@ -362,18 +368,38 @@ print(jakas_lista)   # [2, 3, True, 4, 5]
 tagi_produkt1 = ['buty', 'sportowe', 'nike', 'rozmiar-42']
 print(' | '.join(tagi_produkt1)) # 'buty | sportowe | nike | rozmiar-42'
 
-```
+# intersection - zwraca nowy zbiór zawierający elementy wspólne dla dwóch lub więcej zbiorów
+# difference - służy do znajdowania różnicy między zbiorami (typ set), zwracając elementy, które znajdują się w pierwszym zbiorze, ale # nie ma ich w pozostałych podanych zbiorach
+a = {1, 2, 3, 4}
+b = {2, 3, 4, 5, 6}
+wynik = a.intersection(b)  
+wynik3 = a.difference(b) 
+wynik4 = b.difference(a)
+print(wynik) # {2, 3, 4}
+print(wynik3) #{1}
+print(wynik4) #{5, 6}
 
+```
 ---
 
 ### ✏️ Samodzielne zadania: Metody obiektów
 1. Mając zmienną `email = "  Jan.Kowalski@Domain.COM  "`: usuń spacje (`.strip()`), zamień na małe litery (`.lower()`) i sprawdź końcówkę (`.endswith(".com")`).
 2. Mając dwa zbiory technologii: `osoba1 = {"Python", "SQL", "Git", "C++"}` oraz `osoba2 = {"Python", "Java", "Git", "Docker"}`: znajdź część wspólną (`intersection`) oraz różnicę (`difference`).
-   
 
 ---
+## 1.7 Funkcja filtrowanie listy
+Funkcja przyjmuje dwa parametry:
+`fun:` funkcja warunkowa (predykat), do której przekazywany jest po kolei każdy element kolekcji. Zwraca ona `True`, jeśli dany element spełnia określony warunek, w przeciwnym razie zwraca False.
+`iter:` filtrowana kolekcja (obiekt iterowalny, np. lista, krotka).
 
-## 1.7 Argumenty pozycyjne i nazwane w funkcjach
+W wyniku funkcja zwraca przefiltrowane elementy (tylko te, dla których funkcja fun zwróciła wartość `True`).
+
+```python
+numbers = [-5, -4, -3 ,-2, -1, 0, 1, 2, 3, 4, 5]
+result = filter(lambda x: x > - 1, numbers)
+for x in result: print(x, end=" ")  # 0 1 2 3 4 5 
+
+## 1.8 Argumenty pozycyjne i nazwane w funkcjach
 
 ```python
 def wypisz_argumenty(arg1, arg2, arg3='domyślna'):
