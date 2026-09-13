@@ -284,7 +284,8 @@ Dostęp do atrybutów obiektu uzyskuje się za pomocą kropki: `obiekt.atrybut`.
 * `.endswith(sub)` — Sprawdza, czy napis kończy się podłańcuchem `sub`.
 * `.replace(old, new[, count])` — Zastępuje wystąpienia tekstu.
 * `strip("#!")` - usuwania białych (domyślnie bez parametru) lub wskazanych znaków (z parametru) na początku i na końcu ciągów
-* 
+* `.split` - zamiana tekstu na listę i listy na tekst
+*  .join() - zamiana listy na tekst
 
 #### Przykłady i objaśnienie metod łańcuchowych:
 
@@ -324,6 +325,9 @@ print(text2.strip("#!"))  # "hello"
 
 napis="           MINISTERSTWO DO SPRAW NIEZBYT ISTOTNYCH SPRAW  "
 print(napis.strip())
+
+napis="MINISTERSTWO DO SPRAW NIEZBYT ISTOTNYCH SPRAW"
+print(napis.split()) #['MINISTERSTWO', 'DO', 'SPRAW', 'NIEZBYT', 'ISTOTNYCH', 'SPRAW']
 ```
 
 ---
@@ -354,6 +358,10 @@ print(jakas_lista)   # [1, 2, 3, True, 4, 5]
 pierwszy = jakas_lista.pop(0)
 print(pierwszy)      # 1
 print(jakas_lista)   # [2, 3, True, 4, 5]
+
+tagi_produkt1 = ['buty', 'sportowe', 'nike', 'rozmiar-42']
+print(' | '.join(tagi_produkt1)) # 'buty | sportowe | nike | rozmiar-42'
+
 ```
 
 ---
@@ -361,6 +369,7 @@ print(jakas_lista)   # [2, 3, True, 4, 5]
 ### ✏️ Samodzielne zadania: Metody obiektów
 1. Mając zmienną `email = "  Jan.Kowalski@Domain.COM  "`: usuń spacje (`.strip()`), zamień na małe litery (`.lower()`) i sprawdź końcówkę (`.endswith(".com")`).
 2. Mając dwa zbiory technologii: `osoba1 = {"Python", "SQL", "Git", "C++"}` oraz `osoba2 = {"Python", "Java", "Git", "Docker"}`: znajdź część wspólną (`intersection`) oraz różnicę (`difference`).
+   
 
 ---
 
@@ -684,6 +693,24 @@ Należy napisać funkcję, która przyjmuje jako napis adres URL i wyciąga z ni
   * Wejście: `"yandex.ru"` -> Wyjście: `"yandex.ru"`
 * **Przykład 4:**
   * Wejście: `"ftp://files1server.net/folder/file.zip"` -> Wyjście: `"files1server.net"`
+
+---
+## Zadanie 11: Generator opisów w menu kawiarni
+### Opis
+Wyobraź sobie, że piszesz program przygotowujący skrócone opisy pozycji do cyfrowego menu kawiarni. Każdy napój opisany jest zestawem składników i cech w postaci listy tagów.
+
+### Dane wejściowe:
+Utwórz trzy oddzielne listy zawierające po 4 tagi tekstowe dla trzech różnych napojów (np. kawa1, kawa2, kawa3):
+Pierwszy napój: 'espresso', 'mocna', 'arabska', 'goraca'
+Drugi napój: 'cappuccino', 'mleko-owsiane', 'pianka', 'cynamon'
+Trzeci napój: 'matcha', 'zielona', 'na-zimno', 'lod'
+
+Połącz elementy każdej z list w pojedynczy ciąg znaków (napis) za pomocą metody .join(), używając separatora " - " (spacja, myślnik, spacja).
+
+Zapisz otrzymane trzy połączone napisy do nowej, wspólnej listy (np. karty_menu).
+### Dane wyjściowe
+Wyświetl na ekranie końcową listę za pomocą funkcji print()
+['espresso - mocna - arabska - goraca', 'cappuccino - mleko-owsiane - pianka - cynamon', 'matcha - zielona - na-zimno - lod']
 
 ---
 
