@@ -222,19 +222,6 @@ print(prosty_lancuch1[3:8])         # 'iś pr'
 ```
 
 ---
-### .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
-```python
-koszyk = {"jabłka": 5, "banany": 3, "pomarańcze": 2}
-print(koszyk.items()) # dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
-print(list(koszyk.items())[1]) # Output: ('banany', 3)
-
-slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
-print(slownik1['imię'])             # 'Jadwiga'
-print(slownik1['ulub_jedzenie'][1]) #'owoce'
-print(list(slownik1.items())[1:2])  # [('wiek', 23)]
-print(list(slownik1.items())[::2])  #[('imię', 'Jadwiga'), ('ulub_jedzenie', ['pizza', 'owoce', 'ryba'])]
-```
----
 
 ### ✏️ Samodzielne zadania: Dostęp i Slicing
 1. **Zabawy ze slicingiem tekstu:** Mając zmienną `slowo = "MATEMATYKA"`:
@@ -381,11 +368,170 @@ print(wynik3) #{1}
 print(wynik4) #{5, 6}
 
 ```
+
+---
+
+### Metody dla słowników (`dict`)
+
+Słownik (`dict`) to mutowalna kolekcja par `klucz: wartość`, gdzie klucze muszą być unikalne i niezmienne (haszowalne, np. `str`, `int`, `tuple`).
+
+* `.get(key[, default])` — bezpieczne pobieranie wartości dla podanego klucza. Jeśli klucz nie istnieje, zwraca wartość domyślną (`None` lub podaną jako drugi argument) zamiast zgłaszać błąd `KeyError`.
+* `.keys()` — zwraca dynamiczny widok wszystkich kluczy słownika (`dict_keys`).
+* `.values()` — zwraca dynamiczny widok wszystkich wartości słownika (`dict_values`).
+* `.items()` — zwraca dynamiczny widok wszystkich par `(klucz, wartość)` w postaci krotek (`dict_items`).
+* `.update([other])` — aktualizuje słownik o pary klucz-wartość pochodzące z innego słownika lub sekwencji par.
+* `.pop(key[, default])` — usuwa podany klucz i zwraca przypisaną mu wartość. Jeśli klucz nie istnieje i nie podano wartości domyślnej, rzuca wyjątek `KeyError`.
+* `.popitem()` — usuwa i zwraca ostatnią dodaną parę `(klucz, wartość)` (zgodnie z porządkiem LIFO).
+* `.setdefault(key[, default])` — jeśli klucz istnieje w słowniku, zwraca jego wartość; jeśli nie istnieje, wstawia klucz z wartością `default` i zwraca tę wartość.
+* `.clear()` — usuwa wszystkie elementy ze słownika.
+* `.copy()` — tworzy płytką kopię (shallow copy) słownika.
+* `klucz in slownik` / `klucz not in slownik` — bardzo szybkie (średnio $O(1)$) sprawdzenie, czy klucz występuje w słowniku.
+
+---
+
+### .items() wyciąga ze słownika wszystkie pary klucz-wartość jednocześnie.
+
+Metoda `.items()` pozwala na jednoczesny dostęp do klucza i powiązanej z nim wartości. Zwracany obiekt `dict_items` można bezpośrednio iterować w pętli `for` lub przekształcić w listę za pomocą `list()`, co umożliwia m.in. operacje wycinania (slicing) na parach:
+
+```python
+koszyk = {"jabłka": 5, "banany": 3, "pomarańcze": 2}
+print(koszyk.items()) # dict_items([('jabłka', 5), ('banany', 3), ('pomarańcze', 2)])
+print(list(koszyk.items())[1]) # Output: ('banany', 3)
+
+slownik1 = {'imię': 'Jadwiga', 'wiek': 23, 'ulub_jedzenie': ['pizza', 'owoce', 'ryba']}
+print(slownik1['imię'])             # 'Jadwiga'
+print(slownik1['ulub_jedzenie'][1]) #'owoce'
+print(list(slownik1.items())[1:2])  # [('wiek', 23)]
+print(list(slownik1.items())[::2])  #[('imię', 'Jadwiga'), ('ulub_jedzenie', ['pizza', 'owoce', 'ryba'])]
+
+# Iteracja po kluczach i wartościach jednocześnie (bardzo częste na maturze!):
+for owoc, ilosc in koszyk.items():
+    print(f"Produkt: {owoc}, Ilość: {ilosc}")
+```
+
+---
+
+### Przykłady kodu i operacji na Słownik
+
+#### 1. Bezpieczny dostęp i metoda `.get()`
+
+W standardowym dostępie indeksowym `slownik[klucz]`, odwołanie się do nieistniejącego klucza kończy się błędem `KeyError` i przerwaniem działania programu. Metoda `.get()` pozwala tego bezpiecznie uniknąć.
+
+```python
+student = {"imie": "Marek", "kierunek": "Informatyka", "rok": 2}
+
+# Zwykły dostęp indeksowy [klucz]:
+print(student["imie"])              # 'Marek'
+# print(student["stypendium"])      # BŁĄD! KeyError: 'stypendium'
+
+# Bezpieczne pobieranie za pomocą .get() — brak klucza zwraca None:
+print(student.get("stypendium"))    # None
+
+# Bezpieczne pobieranie z podaniem własnej wartości domyślnej:
+print(student.get("stypendium", 0.0))       # 0.0
+print(student.get("rok", 1))                # 2 (klucz istnieje, zwraca wartość z bazy)
+
+# Zastosowanie maturalne: Zliczanie częstości występowania elementów
+tekst = "matura informatyka python matura informatyka informatyka"
+licznik = {}
+
+for slowo in tekst.split():
+    # Jeśli słowa nie ma w słowniku, get zwraca 0, dodajemy 1 i zapisujemy:
+    licznik[slowo] = licznik.get(slowo, 0) + 1
+
+print(licznik)
+# Output: {'matura': 2, 'informatyka': 3, 'python': 1}
+```
+
+#### 2. Metody `.keys()`, `.values()` oraz operacje agregujące
+
+```python
+ceny = {"chleb": 4.50, "mleko": 3.20, "masło": 7.80, "ser": 9.00}
+
+# Pobieranie samych kluczy oraz samych wartości:
+print(list(ceny.keys()))    # ['chleb', 'mleko', 'masło', 'ser']
+print(list(ceny.values()))  # [4.5, 3.2, 7.8, 9.0]
+
+# Operacje matematyczne na wartościach:
+laczny_koszt = sum(ceny.values())
+print(f"Łączny koszt: {laczny_koszt:.2f} zł")  # 24.50 zł
+
+# Wyszukiwanie klucza o największej wartości:
+najdrozszy = max(ceny, key=ceny.get)
+print(f"Najdroższy produkt: {najdrozszy} ({ceny[najdrozszy]} zł)")  # ser (9.0 zł)
+```
+
+#### 3. Dodawanie, modyfikacja i metoda `.update()`
+
+```python
+konfiguracja = {"motyw": "ciemny", "jezyk": "pl", "autozapis": True}
+
+# Dodanie nowego klucza lub modyfikacja istniejącego:
+konfiguracja["rozmiar_czcionki"] = 14
+konfiguracja["motyw"] = "jasny"
+
+# .update() — łączenie słowników lub masowa aktualizacja:
+nowe_opcje = {"rozdzielczosc": "1920x1080", "autozapis": False, "jezyk": "en"}
+konfiguracja.update(nowe_opcje)
+print(konfiguracja)
+# {'motyw': 'jasny', 'jezyk': 'en', 'autozapis': False, 'rozmiar_czcionki': 14, 'rozdzielczosc': '1920x1080'}
+```
+
+#### 4. Usuwanie elementów: `.pop()`, `.popitem()`, `del` i `.clear()`
+
+```python
+dane = {"id": 101, "login": "admin", "token": "xyz123", "aktywny": True}
+
+# .pop(klucz) — usuwa klucz i zwraca powiązaną wartość:
+token = dane.pop("token")
+print(token)        # 'xyz123'
+
+# .pop(klucz, default) — bezpieczne usunięcie (zwraca default zamiast KeyError):
+rola = dane.pop("rola", "brak_roli")
+print(rola)         # 'brak_roli'
+
+# .popitem() — usuwa i zwraca ostatnią dodaną parę (klucz, wartość):
+ostatni = dane.popitem()
+print(ostatni)      # ('aktywny', True)
+
+# Instrukcja del:
+del dane["id"]
+
+# .clear() — czyści słownik do stanu pustego:
+dane.clear()
+print(dane)         # {}
+```
+
+#### 5. Metoda `.setdefault()` oraz sprawdzanie `in` / `not in`
+
+```python
+# setdefault: pobiera wartość; jeśli klucza nie ma, tworzy go z wartością domyślną
+grupy = {}
+grupy.setdefault("owoce", []).append("jabłko")
+grupy.setdefault("owoce", []).append("gruszka")
+grupy.setdefault("warzywa", []).append("marchewka")
+print(grupy)
+# {'owoce': ['jabłko', 'gruszka'], 'warzywa': ['marchewka']}
+
+# Sprawdzanie obecności klucza w słowniku:
+if "owoce" in grupy:
+    print("Mamy zarejestrowaną kategorię owoce!")
+
+if "nabial" not in grupy:
+    print("Brak kategorii nabiał.")
+```
+
 ---
 
 ### ✏️ Samodzielne zadania: Metody obiektów
 1. Mając zmienną `email = "  Jan.Kowalski@Domain.COM  "`: usuń spacje (`.strip()`), zamień na małe litery (`.lower()`) i sprawdź końcówkę (`.endswith(".com")`).
 2. Mając dwa zbiory technologii: `osoba1 = {"Python", "SQL", "Git", "C++"}` oraz `osoba2 = {"Python", "Java", "Git", "Docker"}`: znajdź część wspólną (`intersection`) oraz różnicę (`difference`).
+3. Mając słownik magazynu `magazyn = {"zeszyt": 15, "dlugopis": 30, "olowek": 10}`:
+   - Pobierz liczbę artykułów `"gumka"` za pomocą metody `.get()`, podając wartość domyślną `0`.
+   - Zaktualizuj słownik o dostawę `{"gumka": 20, "linijka": 5}` za pomocą metody `.update()`.
+   - Oblicz łączną liczbę wszystkich artykułów w magazynie korzystając z metody `.values()` oraz funkcji `sum()`.
+
+> 💡 **Więcej zadań praktycznych:** Zobacz osobny zestaw zadań treningowych (bez gotowych odpowiedzi) obejmujący m.in. grę Scrabble, problem plecakowy z wagami oraz operacje na zagnieżdżonych słownikach i zbiorach: [Zadania — Słowniki i Zbiory](Zadania_slowniki_i_zbiory.md).
 
 ---
 ## 1.7 Funkcja filtrowanie listy
@@ -849,6 +995,13 @@ W tej sekcji znajdują się rozwiązania do zadań teoretycznych z Sekcji 1 oraz
    osoba2 = {"Python", "Java", "Git", "Docker"}
    wspolne = osoba1.intersection(osoba2) # {'Python', 'Git'}
    tylko_osoba1 = osoba1.difference(osoba2) # {'SQL', 'C++'}
+   ```
+3. **Operacje na słowniku:**
+   ```python
+   magazyn = {"zeszyt": 15, "dlugopis": 30, "olowek": 10}
+   gumka_sztuk = magazyn.get("gumka", 0) # 0
+   magazyn.update({"gumka": 20, "linijka": 5})
+   suma_przedmiotow = sum(magazyn.values()) # 80
    ```
 
 ### Zadania 1.7: Argumenty w funkcjach
