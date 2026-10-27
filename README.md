@@ -689,10 +689,12 @@ Twoje imię wielkimi literami to TOMEK.
 
 W zadaniach maturalnych bardzo często pojawiają się pojęcia **NWD** oraz **NWW**:
 
-* **NWD (Największy Wspólny Dzielnik)**, ang. *GCD (Greatest Common Divisor)* — największa liczba naturalna, która dzieli bez reszty obie podane liczby $a$ i $b$. Najszybszym sposobem jego wyznaczania jest **algorytm Euklidesa** (z użyciem reszty z dzielenia `%`).
-* **NWW (Najmniejsza Wspólna Wielokrotność)**, ang. *LCM (Least Common Multiple)* — najmniejsza dodatnia liczba naturalna, która jest podzielna zarówno przez $a$, jak i przez $b$. Oblicza się ją ze wzoru wykorzystującego NWD:
+* **NWD (Największy Wspólny Dzielnik)**, ang. *GCD (Greatest Common Divisor)* — największa liczba naturalna, która dzieli bez reszty obie podane liczby `a` i `b`. Najszybszym sposobem jego wyznaczania jest **algorytm Euklidesa** (z użyciem reszty z dzielenia `%`).
+* **NWW (Najmniejsza Wspólna Wielokrotność)**, ang. *LCM (Least Common Multiple)* — najmniejsza dodatnia liczba naturalna, która jest podzielna zarówno przez `a`, jak i przez `b`. Oblicza się ją ze wzoru wykorzystującego NWD:
 
-$$\text{NWW}(a, b) = \frac{|a \cdot b|}{\text{NWD}(a, b)}$$
+```text
+NWW(a, b) = |a * b| // NWD(a, b)
+```
 
 ### Implementacja w Pythonie
 
@@ -737,8 +739,8 @@ print(math.lcm(24, 36))  # 72
 ---
 
 ### ✏️ Samodzielne zadania: NWD i NWW
-1. Napisz funkcję `czy_wzglednie_pierwsze(a, b)`, która zwraca `True`, jeśli dwie liczby są względnie pierwsze (czyli ich $\text{NWD}(a, b) = 1$), oraz `False` w przeciwnym wypadku.
-2. Oblicz NWD oraz NWW dla trzech liczb: `a = 12`, `b = 18`, `c = 30` (wskazówka: $\text{NWD}(a, b, c) = \text{NWD}(\text{NWD}(a, b), c)$).
+1. Napisz funkcję `czy_wzglednie_pierwsze(a, b)`, która zwraca `True`, jeśli dwie liczby są względnie pierwsze (czyli ich `NWD(a, b) == 1`), oraz `False` w przeciwnym wypadku.
+2. Oblicz NWD oraz NWW dla trzech liczb: `a = 12`, `b = 18`, `c = 30` (wskazówka: najpierw oblicz NWD dla pierwszych dwóch liczb `a` i `b`, a następnie oblicz NWD otrzymanego wyniku i trzeciej liczby `c`, czyli `gcd(gcd(a, b), c)`).
 
 ---
 
