@@ -1148,6 +1148,8 @@ number = 5
 1. Napisz pętlę `while`, która oblicza sumę cyfr podanej liczby naturalnej `n = 5482` (wykorzystaj operatory `% 10` oraz `// 10`).
 2. Używając pętli `for`, funkcji `range()` oraz instrukcji `continue`, wypisz wszystkie liczby z przedziału od `1` do `20`, które **nie są podzielne przez 3**.
 
+> 💡 **Więcej zadań praktycznych z pętli:** Zobacz osobny zestaw 15 zadań treningowych (obejmujący m.in. przetwarzanie list, ciąg Fibonacciego, zadanie „Zepsuta klawiatura”, liczby niepotęgowe oraz liczby pierwsze): [Zadania — Pętla for i while](Zadania_petla_for.md).
+
 ---
 
 # 2. Praktyka — Zadania programistyczne
