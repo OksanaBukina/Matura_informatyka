@@ -1156,10 +1156,6 @@ number = 5
 
 # 2. Praktyka — Zadania programistyczne
 
-Ten rozdział zawiera **10 zadań praktycznych** w języku polskim.
-
----
-
 ## Zadanie 1: Odwracanie łańcucha znaków
 ### Opis
 Należy zaimplementować funkcję, która przyjmuje jako argument ciąg znaków (string) i zwraca go w odwrotnej kolejności. Jest to jedno z klasycznych zadań sprawdzających rozumienie podstaw pracy z sekwencjami.
