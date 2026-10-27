@@ -11,10 +11,13 @@ Kompleksowy konspekt wiedzy z podstaw języka Python sformatowany pod platformę
   - [1.3 Podstawowe kontenery](#13-podstawowe-kontenery)
   - [1.4 Dostęp do danych w kontenerach (Indeksowanie i Slicing)](#14-dostęp-do-danych-w-kontenerach-indeksowanie-i-slicing)
   - [1.5 Wbudowane funkcje i obiekty wywoływalne](#15-wbudowane-funkcje-i-obiekty-wywoływalne)
-  - [1.6 Atrybuty obiektów (Metody i Właściwości)](#16-atrybuty-obiektów-metody-i-właściwości)
+  - [1.6 Atrybuty obiektów Pythona (Metody i Właściwości)](#16-atrybuty-obiektów-pythona-metody-i-właściwości)
   - [1.7 Funkcja filtrowanie listy](#17-funkcja-filtrowanie-listy)
-  - [1.8 Argumenty pozycyjne i nazwane w funkcjach](#18-argumenty-pozycyjne-i-nazwane-w-funkcjach)
-  - [1.9 Formatowanie łańcuchów znaków (Strings)](#19-formatowanie-łańcuchów-znaków-strings)
+  - [1.8 Argumenty pozycyjne i nazwane (keyword) w obiektach wywoływalnych](#18-argumenty-pozycyjne-i-nazwane-keyword-w-obiektach-wywoływalnych)
+  - [1.9 Formatowanie łańcuchów i używanie placeholderów](#19-formatowanie-łańcuchów-i-używanie-placeholderów)
+  - [1.10 Algorytmy NWD i NWW (Algorytm Euklidesa)](#110-algorytmy-nwd-i-nww-algorytm-euklidesa)
+  - [1.11 Instrukcje warunkowe (if, elif, else)](#111-instrukcje-warunkowe-if-elif-else)
+  - [1.12 Pętle w Pythonie (while oraz for)](#112-pętle-w-pythonie-while-oraz-for)
 - [2. Praktyka — Zadania programistyczne](#2-praktyka--zadania-programistyczne)
   - [Zadanie 1: Odwracanie łańcucha znaków](#zadanie-1-odwracanie-łańcucha-znaków)
   - [Zadanie 2: Wyszukiwanie najdłuższego słowa](#zadanie-2-wyszukiwanie-najdłuższego-słowa)
@@ -255,12 +258,13 @@ print(abs(-12))            # 12
 
 ---
 
-## 1.6 Atrybuty obiektów (Metody i Właściwości)
+## 1.6 Atrybuty obiektów Pythona (Metody i Właściwości)
 
-Dostęp do atrybutów obiektu uzyskuje się za pomocą kropki: `obiekt.atrybut`.
-- **Metoda:** wywoływalny atrybut (funkcja związana z obiektem, np. `napis.upper()`).
-- **Właściwość (Property):** dana / informacja opisująca obiekt.
-- `dir(obiekt)` — zwraca listę wszystkich dostępnych atrybutów obiektu.
+Różne typy obiektów w Pythonie mają różne **atrybuty**, do których można odwoływać się po nazwie (podobnie jak do zmiennej). Aby uzyskać dostęp do atrybutu obiektu, użyj kropki (`.`) po obiekcie, a następnie podaj atrybut (tj. `obiekt.atrybut`).
+
+* **Metoda:** Kiedy atrybut obiektu jest **wywoływalny**, ten atrybut nazywa się **metodą**. Jest to to samo co funkcja, tylko ta funkcja jest związana z konkretnym obiektem (np. `napis.upper()`).
+* **Właściwość (Property):** Kiedy atrybut obiektu **nie jest wywoływalny**, ten atrybut nazywa się **właściwością**. Jest to po prostu fragment danych o obiekcie, który sam w sobie jest innym obiektem (np. `liczba_zespolona.real`).
+* `dir(obiekt)` — zwraca listę wszystkich dostępnych atrybutów obiektu.
 
 ---
 
@@ -555,14 +559,76 @@ Oczekiwany wynik:
 `[2, 4, 6]`
 
 ---
-## 1.8 Argumenty pozycyjne i nazwane w funkcjach
+## 1.8 Argumenty pozycyjne i nazwane (keyword) w obiektach wywoływalnych
+
+Funkcję/metodę można wywołać na wiele różnych sposobów:
+
+* `func()`: Wywołaj `func` bez argumentów
+* `func(arg)`: Wywołaj `func` z jednym argumentem pozycyjnym
+* `func(arg1, arg2)`: Wywołaj `func` z dwoma argumentami pozycyjnymi
+* `func(arg1, arg2, ..., argn)`: Wywołaj `func` z wieloma argumentami pozycyjnymi
+* `func(nazwa_arg=wartosc)`: Wywołaj `func` z jednym argumentem nazwanym
+* `func(nazwa_arg1=wartosc1, nazwa_arg2=wartosc2)`: Wywołaj `func` z dwoma argumentami nazwanymi
+* `func(nazwa_arg1=wartosc1, nazwa_arg2=wartosc2, ..., nazwa_argn=wartosc_n)`: Wywołaj `func` z wieloma argumentami nazwanymi
+* `func(arg1, arg2, nazwa_arg1=wartosc1, nazwa_arg2=wartosc2)`: Wywołaj `func` z argumentami pozycyjnymi i nazwanymi
+* `obiekt.metoda()`: To samo co dla `func`.. i każdego innego przykładu `func`
+
+> [!IMPORTANT]
+> **Zasady przekazywania argumentów:**
+> 1. Używając **argumentów pozycyjnych**, musisz je podać w kolejności, w jakiej funkcja je zdefiniowała (w sygnaturze funkcji).
+> 2. Używając **argumentów nazwanych**, możesz podać argumenty, które chcesz, w dowolnej kolejności, o ile określisz nazwę każdego argumentu.
+> 3. Używając **argumentów pozycyjnych i nazwanych**, argumenty pozycyjne muszą być pierwsze.
+
+### Przykłady kodu
 
 ```python
-def wypisz_argumenty(arg1, arg2, arg3='domyślna'):
-    print(arg1, arg2, arg3)
+# Zdefiniuj funkcję, która przyjmuje 3 argumenty
+def wypisz_argumenty(arg1, arg2, arg3='wartość_domyślna'):
+    print('arg1 to:', arg1)
+    print('arg2 to:', arg2)
+    print('arg3 to:', arg3)
 
-wypisz_argumenty('a', 'b', 'c')                # Pozycyjne
-wypisz_argumenty(arg3='C', arg1='A', arg2='B') # Nazwane
+# Wywołanie z argumentami pozycyjnymi
+print('Wywołanie z argumentami pozycyjnymi:')
+wypisz_argumenty('a', 'b', 'c')
+
+# Wywołanie z argumentami nazwanymi (kolejność nie ma znaczenia)
+print('\nWywołanie z argumentami nazwanymi:')
+wypisz_argumenty(arg3='C', arg1='A', arg2='B')
+
+# Wywołanie z argumentami pozycyjnymi i nazwanymi
+print('\nWywołanie z mieszanymi argumentami:')
+wypisz_argumenty('pierwszy', arg3='trzeci', arg2='drugi')
+
+# Wywołanie używające wartości domyślnej dla arg3
+print('\nWywołanie używające wartości domyślnej:')
+wypisz_argumenty('jabłko', 'banan')
+
+# To spowoduje błąd: argument pozycyjny po argumencie nazwanym
+# wypisz_argumenty(arg1='x', 'y', 'z')
+```
+
+**Wynik działania programu (Output):**
+```text
+Wywołanie z argumentami pozycyjnymi:
+arg1 to: a
+arg2 to: b
+arg3 to: c
+
+Wywołanie z argumentami nazwanymi:
+arg1 to: A
+arg2 to: B
+arg3 to: C
+
+Wywołanie z mieszanymi argumentami:
+arg1 to: pierwszy
+arg2 to: drugi
+arg3 to: trzeci
+
+Wywołanie używające wartości domyślnej:
+arg1 to: jabłko
+arg2 to: banan
+arg3 to: wartość_domyślna
 ```
 
 ---
@@ -573,15 +639,42 @@ wypisz_argumenty(arg3='C', arg1='A', arg2='B') # Nazwane
 
 ---
 
-## 1.9 Formatowanie łańcuchów znaków (Strings)
+## 1.9 Formatowanie łańcuchów i używanie placeholderów
+
+W Pythonie istnieje kilka sposobów formatowania łańcuchów znaków i wstawiania do nich wartości (placeholderów): od starszego operatora `%`, przez metodę `.format()`, aż po nowoczesne **f-stringi** (Python 3.6+).
 
 ```python
-imie = 'Alicja'
+# "Stary" styl używający operatora %
+imie = 'Tomek'
 wiek = 30
+print('Witaj, %s. Masz %d lat.' % (imie, wiek))
 
-# f-strings (zalecany styl Python 3.6+)
+# "Nowy" styl używający metody .format()
+print('Witaj, {}. Masz {} lat.'.format(imie, wiek))
+
+# Metoda .format() z indeksami pozycyjnymi
+print('Witaj, {1}. Masz {0} lat. Tak, {1}!'.format(wiek, imie))
+
+# Metoda .format() z nazwami
+print('Witaj, {n}. Masz {a} lat.'.format(n=imie, a=wiek))
+
+# "Najnowszy" styl: f-stringi (Python 3.6+)
 print(f'Witaj, {imie}. Masz {wiek} lat.')
-print(f'Za 5 lat będziesz mieć {wiek + 5} lat.')
+
+# f-stringi mogą zawierać wyrażenia
+print(f'Za 5 lat {imie} będzie mieć {wiek + 5} lat.')
+print(f'Twoje imię wielkimi literami to {imie.upper()}.')
+```
+
+**Wynik działania programu (Output):**
+```text
+Witaj, Tomek. Masz 30 lat.
+Witaj, Tomek. Masz 30 lat.
+Witaj, Tomek. Masz 30 lat. Tak, Tomek!
+Witaj, Tomek. Masz 30 lat.
+Witaj, Tomek. Masz 30 lat.
+Za 5 lat Tomek będzie mieć 35 lat.
+Twoje imię wielkimi literami to TOMEK.
 ```
 
 ---
@@ -589,6 +682,471 @@ print(f'Za 5 lat będziesz mieć {wiek + 5} lat.')
 ### ✏️ Samodzielne zadania: Formatowanie stringów
 1. Utwórz zmienne `towar = "Kawa"`, `cena = 24.99`, `sztuki = 3`. Używając f-stringa, wygeneruj tekst podsumowania koszyka.
 2. Wyświetl liczbę `pi = 3.14159265` z dokładnością do 2 miejsc po przecinku (`{pi:.2f}`).
+
+---
+
+## 1.10 Algorytmy NWD i NWW (Algorytm Euklidesa)
+
+W zadaniach maturalnych bardzo często pojawiają się pojęcia **NWD** oraz **NWW**:
+
+* **NWD (Największy Wspólny Dzielnik)**, ang. *GCD (Greatest Common Divisor)* — największa liczba naturalna, która dzieli bez reszty obie podane liczby $a$ i $b$. Najszybszym sposobem jego wyznaczania jest **algorytm Euklidesa** (z użyciem reszty z dzielenia `%`).
+* **NWW (Najmniejsza Wspólna Wielokrotność)**, ang. *LCM (Least Common Multiple)* — najmniejsza dodatnia liczba naturalna, która jest podzielna zarówno przez $a$, jak i przez $b$. Oblicza się ją ze wzoru wykorzystującego NWD:
+
+$$\text{NWW}(a, b) = \frac{|a \cdot b|}{\text{NWD}(a, b)}$$
+
+### Implementacja w Pythonie
+
+```python
+# NWD (Największy Wspólny Dzielnik) — Algorytm Euklidesa
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+
+# NWW (Najmniejsza Wspólna Wielokrotność)
+def lcm(a, b):
+    if a == 0 or b == 0:
+        return 0
+    return abs(a * b) // gcd(a, b)
+```
+
+### Przykłady użycia
+
+```python
+# 1. Wywołanie własnych funkcji gcd() i lcm():
+print("NWD(24, 36) =", gcd(24, 36))   # Output: 12
+print("NWW(24, 36) =", lcm(24, 36))   # Output: 72
+
+print("NWD(17, 13) =", gcd(17, 13))   # Output: 1 (liczby względnie pierwsze)
+print("NWW(17, 13) =", lcm(17, 13))   # Output: 221
+
+# 2. Praktyczne zastosowanie: skracanie ułamka zwykłego (np. 48/64)
+licznik = 48
+mianownik = 64
+dzielnik = gcd(licznik, mianownik)
+print(f"Ułamek {licznik}/{mianownik} po skróceniu to: {licznik // dzielnik}/{mianownik // dzielnik}")
+# Output: Ułamek 48/64 po skróceniu to: 3/4
+
+# 3. Gotowe funkcje z modułu standardowego math (Python 3.9+):
+import math
+print(math.gcd(24, 36))  # 12
+print(math.lcm(24, 36))  # 72
+```
+
+---
+
+### ✏️ Samodzielne zadania: NWD i NWW
+1. Napisz funkcję `czy_wzglednie_pierwsze(a, b)`, która zwraca `True`, jeśli dwie liczby są względnie pierwsze (czyli ich $\text{NWD}(a, b) = 1$), oraz `False` w przeciwnym wypadku.
+2. Oblicz NWD oraz NWW dla trzech liczb: `a = 12`, `b = 18`, `c = 30` (wskazówka: $\text{NWD}(a, b, c) = \text{NWD}(\text{NWD}(a, b), c)$).
+
+---
+
+## 1.11 Instrukcje warunkowe (`if`, `elif`, `else`)
+
+### Instrukcje `if` i pętle `while` w Pythonie — wprowadzenie
+
+Wyrażenia warunkowe mogą być używane z tymi dwiema instrukcjami:
+
+* **Instrukcja `if`** pozwala przetestować warunek i wykonać pewne działania, jeśli warunek jest prawdziwy (`True`). Możesz również dodać klauzule `elif` i/lub `else` do instrukcji `if`, aby podjąć alternatywne działania, jeśli warunek jest fałszywy (`False`).
+* **Pętla `while`** będzie się wykonywać dopóki jej wyrażenie warunkowe nie będzie fałszywe (`False`).
+
+> [!WARNING]
+> **Uwaga:** Możliwe jest „zapętlenie w nieskończoność” podczas używania pętli `while` z wyrażeniem warunkowym, które nigdy nie staje się fałszywe.
+
+> [!NOTE]
+> **Uwaga:** Ponieważ pętla `for` iteruje po kontenerze elementów, dopóki nie ma ich więcej, nie ma potrzeby określania warunku „zatrzymaj pętlę”.
+
+---
+
+### Konstrukcja warunkowa `if`
+
+Konstrukcje warunkowe używają wyrażeń logicznych i kierują wykonaniem programu po jednej z określonych ścieżek w zależności od wartości wyrażenia warunkowego (`True` lub `False`). Jedną z takich konstrukcji jest instrukcja **`if`**.
+
+Jej formalna definicja wygląda następująco:
+
+```python
+if wyrazenie_logiczne:
+    instrukcje
+[elif wyrazenie_logiczne:
+    instrukcje]
+[else:
+    instrukcje]
+```
+
+W najprostszej postaci po słowie kluczowym `if` występuje wyrażenie logiczne. Jeśli to wyrażenie logiczne zwraca `True`, wykonywany jest następujący po nim blok instrukcji. Każda z tych instrukcji musi zaczynać się z **wcięciem** (rekomendowane są **4 spacje**). Po wyrażeniu logicznym stawia się dwukropek (`:`):
+
+```python
+language = "english"
+if language == "english":
+    print("Hello")
+print("End")
+```
+
+Ponieważ w tym przypadku wartość zmiennej `language` jest równa `"english"`, wykonany zostanie blok `if`, który zawiera tylko jedną instrukcję — `print("Hello")`. W rezultacie konsola wyświetli następujące linie:
+
+```text
+Hello
+End
+```
+
+Zwróć uwagę na ostatnią linijkę kodu w programie: `print("End")`. Nie posiada ona wcięcia, dlatego nie należy do bloku `if` i zostanie wykonana w każdym przypadku, nawet jeśli wyrażenie w instrukcji `if` zwróci `False`.
+
+Gdybyśmy jednak dodali wcięcie do ostatniej linii, również należałaby ona do konstrukcji `if`:
+
+```python
+language = "english"
+if language == "english":
+    print("Hello")
+    print("End")
+```
+
+---
+
+### Blok `else`
+
+Czasami pojawia się potrzeba zdefiniowania alternatywnego rozwiązania na wypadek, gdyby wyrażenie w `if` zwróciło `False`. W tym celu możemy dodać blok **`else`**:
+
+```python
+language = "polish"
+if language == "english":
+    print("Hello")
+else:
+    print("Cześć")
+print("End")
+```
+
+Jeśli wyrażenie `language == "english"` zwraca `True`, wykonywany jest blok `if`, w przeciwnym razie wykonywany jest blok `else`. Ponieważ w powyższym przykładzie warunek `language == "english"` zwraca `False`, wykonane zostaną instrukcje z bloku `else`.
+
+Instrukcje bloku `else` również muszą posiadać wcięcia na początku wiersza:
+
+```python
+language = "polish"
+if language == "english":
+    print("Hello")
+    print("World")
+else:
+    print("Cześć")
+    print("Świecie")
+```
+
+---
+
+### Konstrukcja `elif`
+
+Jeżeli w programie należy sprawdzić kilka warunków, możemy dodać dodatkowe bloki **`elif`** (skrót od *else if*), po których następuje warunek logiczny, a po nim blok instrukcji z wcięciami:
+
+```python
+language = "german"
+if language == "english":
+    print("Hello")
+    print("World")
+elif language == "german":
+    print("Hallo")
+    print("Welt")
+else:
+    print("Cześć")
+    print("Świecie")
+```
+
+Na początku Python sprawdza warunek `if`. Jeśli jest on równy `False`, program przechodzi do sprawdzenia warunku w `elif`. Jeśli ten warunek również zwróci `False`, wykonywany jest blok `else`. W razie potrzeby można zdefiniować wiele bloków `elif` dla różnych warunków:
+
+```python
+language = "german"
+if language == "english":
+    print("Hello")
+elif language == "german":
+    print("Hallo")
+elif language == "french":
+    print("Salut")
+else:
+    print("Cześć")
+```
+
+---
+
+### Zagnieżdżone konstrukcje `if`
+
+Konstrukcja `if` może z kolei sama zawierać wewnątrz siebie zagnieżdżone instrukcje `if`:
+
+```python
+language = "english"
+daytime = "morning"
+if language == "english":
+    print("English")
+    if daytime == "morning":
+        print("Good morning")
+    else:
+        print("Good evening")
+```
+
+Tutaj wewnątrz głównego bloku `if` znajduje się wewnętrzna konstrukcja `if / else`. Jeśli wartość zmiennej `language` jest równa `"english"`, wówczas wewnętrzna konstrukcja sprawdza dodatkowo, czy zmienna `daytime` jest równa `"morning"`. Warto pamiętać, że zagnieżdżone instrukcje również muszą zaczynać się z odpowiednimi, głębszymi wcięciami (np. 8 spacji).
+
+Można też umieścić zagnieżdżone konstrukcje `if` w blokach `elif` oraz `else`:
+
+```python
+language = "english"
+daytime = "morning"
+if language == "english":
+    if daytime == "morning":
+        print("Good morning")
+    else:
+        print("Good evening")
+else:
+    if daytime == "morning":
+        print("Dzień dobry")
+    else:
+        print("Dobry wieczór")
+```
+
+---
+
+### ✏️ Samodzielne zadania: Instrukcje warunkowe `if` (z wykorzystaniem list, słowników, zbiorów i metod)
+
+1. **System kwalifikacji maturalnej (słowniki, listy, zbiory, metody stringów i `if/elif/else`):**
+   Dany jest słownik opisujący ucznia:
+   ```python
+   uczen = {
+       "imie_nazwisko": "  tomek kowalski  ",
+       "punkty_probne": [78, 85, 92],
+       "przedmioty_dodatkowe": {"fizyka", "matematyka"},
+       "olimpiada": False
+   }
+   ```
+   Napisz program, który:
+   - Oczyści pole `"imie_nazwisko"` z białych znaków na końcach (`.strip()`), rozdzieli je na listę słów (`.split()`), zamieni pierwsze litery imienia i nazwiska na wielkie (`.capitalize()`) i połączy z powrotem spacją (`" ".join(...)`).
+   - Obliczy średni wynik z listy `"punkty_probne"` za pomocą funkcji wbudowanych `sum()` i `len()`, a następnie zapisze go w słowniku pod nowym kluczem `"srednia"`.
+   - Za pomocą instrukcji `if / elif / else` oraz bezpiecznego odczytu `.get("olimpiada", False)` przypisze ocenę końcową pod kluczem `"ocena_opisowa"`:
+     - Jeśli uczeń jest laureatem olimpiady (`True`): ustaw `"Celujący — zwolniony z egzaminu (100%)"` i dodaj `100` na koniec listy `"punkty_probne"` (`.append(100)`).
+     - W przeciwnym razie sprawdź wyliczoną średnią:
+       - `90–100`: `"Bardzo dobry (5)"` — wewnątrz tego bloku dodaj **zagnieżdżony `if`**, który sprawdzi, czy `"informatyka"` **nie znajduje się** (`not in`) w zbiorze `"przedmioty_dodatkowe"`; jeśli jej nie ma, wypisz komunikat zachęcający do jej wyboru.
+       - `75–89.99`: `"Dobry (4)"`
+       - `50–74.99`: `"Dostateczny (3)"`
+       - poniżej `50`: `"Niedostateczny (2)"`
+   - Na koniec wyświetli podsumowanie za pomocą **f-stringa** z zaokrągleniem średniej do 2 miejsc po przecinku (`{uczen['srednia']:.2f}`).
+
+2. **Weryfikacja koszyka zakupowego i rabatów (słowniki, listy i warunki złożone):**
+   Masz słownik cen produktów `cennik = {"laptop": 3500.0, "myszka": 120.0, "klawiatura": 250.0, "monitor": 1100.0}`, listę zakupów klienta `koszyk = ["laptop", "myszka", "podkladka"]` oraz kod rabatowy `kod = "  PROMO20  "`.
+   Napisz program, który:
+   - Sprawdzi instrukcją `if`, czy ostatni element koszyka (`koszyk[-1]`) znajduje się w słowniku `cennik`. Jeśli go nie ma (`not in`), usunie go z listy `koszyk` metodą `.pop()`, a do `cennik` doda ten produkt z ceną domyślną `45.0` za pomocą `.setdefault()`.
+   - Obliczy sumę cen towarów pozostałych w liście `koszyk`.
+   - Oczyści zmienną `kod` ze spacji i wielkości liter (`.strip().upper()`) i za pomocą `if / elif / else` obliczy kwotę po rabacie:
+     - jeśli `kod == "PROMO20"` **oraz** suma przekracza `3000`, naliczy **20% rabatu**,
+     - `elif` suma przekracza `2000`, naliczy **10% rabatu**,
+     - `else` nie naliczy żadnego rabatu.
+   - Wyświetli końcową kwotę do zapłaty za pomocą **f-stringa**.
+
+---
+
+## 1.12 Pętle w Pythonie (`while` oraz `for`)
+
+Do powtarzania określonych działań w zależności od warunku w Pythonie stosuje się pętle. W języku Python istnieją dwa rodzaje pętli: **`while`** oraz **`for`**.
+
+---
+
+### 1. Pętla `while`
+
+Formalna definicja pętli `while` składa się z warunku oraz bloku wykonywanych instrukcji:
+
+```python
+while wyrazenie_logiczne:
+    instrukcje
+```
+
+Po słowie kluczowym `while` określa się wyrażenie warunkowe, a po tym wyrażeniu stawia się dwukropek (`:`). Następnie w kolejnych wierszach z wcięciami (4 spacje) umieszczany jest blok instrukcji pętli.
+
+Dopóki wyrażenie warunkowe zwraca wartość `True` (prawda), wykonywane są wszystkie instrukcje bloku pętli `while`. Każde pojedyncze przejście przez ten blok nazywa się **iteracją**. Gdy tylko wyrażenie warunkowe zwróci `False` (fałsz), wykonywanie pętli zostaje przerwane.
+
+Przykład pętli `while`:
+
+```python
+number = 1
+
+while number < 5:
+    print(f"number = {number}")
+    number += 1
+print("Praca programu została zakończona")
+```
+
+Pętla `while` będzie się wykonywać, dopóki zmienna `number` jest mniejsza niż `5`. W samym ciele pętli wartość zmiennej `number` jest wypisywana na ekran, a następnie zwiększana o `1`. Kiedy `number` osiągnie `5`, pętla zakończy pracę. Na końcu wykona się instrukcja `print("Praca programu została zakończona")` (ponieważ nie ma ona wcięcia, znajduje się poza pętlą):
+
+```text
+number = 1
+number = 2
+number = 3
+number = 4
+Praca programu została zakończona
+```
+
+---
+
+### 2. Pętla `for`
+
+Drugim typem pętli w Pythonie jest pętla **`for`**. Ta pętla przebiega po określonym zbiorze (kolekcji) elementów i wykonuje dla każdego z nich blok instrukcji.
+
+Formalna definicja pętli `for`:
+
+```python
+for zmienna in kolekcja_elementow:
+    instrukcje
+```
+
+Po słowie kluczowym `for` podaje się nazwę zmiennej, w której zapisywane będą kolejne elementy, następnie słowo kluczowe `in`, a po nim kolekcję elementów i dwukropek (`:`).
+
+W trakcie pracy pętla pobiera po kolei każdy element z `kolekcja_elementow`, przypisuje go do zmiennej i wykonuje blok instrukcji z wcięciami. Pętla kończy działanie, gdy przejdzie przez wszystkie elementy kolekcji.
+
+Jako kolekcję elementów można przekazać np. łańcuch znaków (`str`), który w istocie reprezentuje sekwencję pojedynczych znaków:
+
+```python
+message = "Hello"
+
+for c in message:
+    print(c)
+```
+
+W pętli zdefiniowano zmienną `c`, do której podczas każdej iteracji trafia kolejny znak napisu `message`. Efekt działania:
+
+```text
+H
+e
+l
+l
+o
+```
+
+#### Funkcja `range()` w pętli `for`
+W połączeniu z pętlą `for` bardzo często stosuje się wbudowaną funkcję **`range()`**, która generuje sekwencję liczb:
+* `range(stop)` — generuje liczby od `0` do `stop - 1`
+* `range(start, stop)` — generuje liczby od `start` do `stop - 1`
+* `range(start, stop, step)` — generuje liczby od `start` do `stop - 1` z krokiem `step`
+
+```python
+# Wypisanie liczb od 0 do 4:
+for n in range(5):
+    print(n, end=" ")       # 0 1 2 3 4
+print()
+
+# Wypisanie liczb od 4 do 9:
+for n in range(4, 10):
+    print(n, end=" ")       # 4 5 6 7 8 9
+print()
+
+# Wypisanie liczb parzystych od 0 do 8 (krok 2):
+for n in range(0, 10, 2):
+    print(n, end=" ")       # 0 2 4 6 8
+print()
+```
+
+---
+
+### 3. Blok `else` w pętlach
+
+Dla pętli w Pythonie można również zdefiniować blok **`else`**. Instrukcje z bloku `else` wykonują się po zakończeniu pętli (gdy warunek w `while` stanie się fałszywy lub gdy w `for` skończą się elementy kolekcji):
+
+```python
+number = 1
+while number < 5:
+    print(f"number = {number}")
+    number += 1
+else:
+    print(f"number = {number}. Praca pętli zakończona")
+print("Praca programu zakończona")
+```
+
+To samo dotyczy pętli `for`:
+
+```python
+message = "Hello"
+for c in message:
+    print(c)
+else:
+    print(f"Ostatni symbol: {c}. Pętla zakończona;")
+print("Praca programu zakończona")
+```
+
+Warto zauważyć, że blok `else` ma dostęp do zmiennych używanych w nagłówku pętli (np. zmiennej `c`), ale wykona się **tylko wtedy**, gdy pętla zakończyła się w sposób naturalny (nie została przerwana instrukcją `break`).
+
+---
+
+### 4. Zagnieżdżone pętle
+
+Jedne pętle mogą zawierać wewnątrz siebie inne pętle. Rozważmy przykład wypisania tabliczki mnożenia za pomocą zagnieżdżonych pętli `while`:
+
+```python
+i = 1
+j = 1
+while i < 10:
+    while j < 10:
+        print(i * j, end="\t")
+        j += 1
+    print("\n")
+    j = 1
+    i += 1
+```
+
+Wewnętrzna pętla `while j < 10` wykonuje 9 iteracji dla każdej jednej iteracji pętli zewnętrznej `while i < 10`. Po zakończeniu pętli wewnętrznej zmienna `j` jest resetowana z powrotem do `1`, zmienna `i` zwiększa się o `1` i proces powtarza się aż `i` osiągnie `10`.
+
+Podobnie można definiować zagnieżdżone pętle `for`:
+
+```python
+for c1 in "ab":
+    for c2 in "ba":
+        print(f"{c1}{c2}")
+```
+**Wynik:**
+```text
+ab
+aa
+bb
+ba
+```
+
+---
+
+### 5. Wyjście z pętli: `break` i `continue`
+
+Do zarządzania przebiegiem pętli służą specjalne instrukcje **`break`** oraz **`continue`**:
+
+* **`break`** — dokonuje natychmiastowego wyjścia z pętli (przerywa całe dalsze wykonywanie pętli).
+* **`continue`** — wykonuje przejście do następnej iteracji pętli (pomija pozostałe instrukcje wyłącznie w bieżącym kroku).
+
+#### Przykład użycia `break`:
+```python
+number = 0
+while number < 5:
+    number += 1
+    if number == 3:    # jeśli number jest równe 3, wychodzimy z pętli
+        break
+    print(f"number = {number}")
+```
+Gdy wartość zmiennej `number` stanie się równa `3`, wykona się instrukcja `break` i pętla zostanie natychmiast zakończona:
+```text
+number = 1
+number = 2
+```
+
+#### Przykład użycia `continue`:
+```python
+number = 0
+while number < 5:
+    number += 1
+    if number == 3:    # jeśli number == 3, przechodzimy do nowej iteracji pętli
+        continue
+    print(f"number = {number}")
+```
+W tej sytuacji, gdy wartość zmiennej `number` wyniesie `3`, po wykonaniu `continue` kolejne instrukcje (czyli `print`) nie zostaną wywołane dla tej iteracji, a program przejdzie od razu do następnego kroku pętli:
+```text
+number = 1
+number = 2
+number = 4
+number = 5
+```
+
+---
+
+### ✏️ Samodzielne zadania: Pętle `while` i `for`
+1. Napisz pętlę `while`, która oblicza sumę cyfr podanej liczby naturalnej `n = 5482` (wykorzystaj operatory `% 10` oraz `// 10`).
+2. Używając pętli `for`, funkcji `range()` oraz instrukcji `continue`, wypisz wszystkie liczby z przedziału od `1` do `20`, które **nie są podzielne przez 3**.
 
 ---
 
@@ -1004,17 +1562,25 @@ W tej sekcji znajdują się rozwiązania do zadań teoretycznych z Sekcji 1 oraz
    suma_przedmiotow = sum(magazyn.values()) # 80
    ```
 
-### Zadania 1.7: Argumenty w funkcjach
+### Zadania 1.7: Filtrowanie listy
+1. **Wybór liczb parzystych za pomocą `filter()`:**
+   ```python
+   liczby = [1, 2, 3, 4, 5, 6]
+   parzyste = list(filter(lambda x: x % 2 == 0, liczby))
+   print(parzyste)  # [2, 4, 6]
+   ```
+
+### Zadania 1.8: Argumenty w funkcjach
 1. **Kalkulator ceny brutto:**
    ```python
    def oblicz_cene_brutto(cena_netto, vat=0.23):
        return cena_netto * (1 + vat)
 
-   print(oblicz_cene_brutto(100))               # 123.0 (pozycyjnie)
-   print(oblicz_cene_brutto(cena_netto=100, vat=0.08)) # 108.0 (nazwanie)
+   print(oblicz_cene_brutto(100))                      # 123.0 (pozycyjnie)
+   print(oblicz_cene_brutto(cena_netto=100, vat=0.08)) # 108.0 (nazwane)
    ```
 
-### Zadania 1.8: Formatowanie stringów
+### Zadania 1.9: Formatowanie stringów
 1. **Podsumowanie koszyka:**
    ```python
    towar = "Kawa"
@@ -1026,6 +1592,112 @@ W tej sekcji znajdują się rozwiązania do zadań teoretycznych z Sekcji 1 oraz
    ```python
    pi = 3.14159265
    print(f"{pi:.2f}") # "3.14"
+   ```
+
+### Zadania 1.10: Algorytmy NWD i NWW
+1. **Sprawdzanie liczb względnie pierwszych:**
+   ```python
+   def gcd(a, b):
+       while b:
+           a, b = b, a % b
+       return a
+
+   def czy_wzglednie_pierwsze(a, b):
+       return gcd(a, b) == 1
+
+   print(czy_wzglednie_pierwsze(14, 25))  # True (NWD = 1)
+   print(czy_wzglednie_pierwsze(14, 21))  # False (NWD = 7)
+   ```
+2. **NWD i NWW dla trzech liczb (`12, 18, 30`):**
+   ```python
+   def lcm(a, b):
+       if a == 0 or b == 0:
+           return 0
+       return abs(a * b) // gcd(a, b)
+
+   a, b, c = 12, 18, 30
+   nwd_3 = gcd(gcd(a, b), c)   # 6
+   nww_3 = lcm(lcm(a, b), c)   # 180
+   print(f"NWD = {nwd_3}, NWW = {nww_3}")
+   ```
+
+### Zadania 1.11: Instrukcje warunkowe `if` (ze słownikami, listami i zbiorami)
+1. **System kwalifikacji maturalnej:**
+   ```python
+   uczen = {
+       "imie_nazwisko": "  tomek kowalski  ",
+       "punkty_probne": [78, 85, 92],
+       "przedmioty_dodatkowe": {"fizyka", "matematyka"},
+       "olimpiada": False
+   }
+
+   # 1. Czyszczenie i formatowanie imienia oraz nazwiska
+   czesci = uczen["imie_nazwisko"].strip().split()
+   uczen["imie_nazwisko"] = " ".join([czesci[0].capitalize(), czesci[1].capitalize()])
+
+   # 2. Obliczanie średniej punktów
+   uczen["srednia"] = sum(uczen["punkty_probne"]) / len(uczen["punkty_probne"])
+
+   # 3. Instrukcje warunkowe if / elif / else
+   if uczen.get("olimpiada", False):
+       uczen["ocena_opisowa"] = "Celujący — zwolniony z egzaminu (100%)"
+       uczen["punkty_probne"].append(100)
+   elif uczen["srednia"] >= 90:
+       uczen["ocena_opisowa"] = "Bardzo dobry (5)"
+       if "informatyka" not in uczen["przedmioty_dodatkowe"]:
+           print("Wskazówka: Warto rozważyć informatykę jako przedmiot dodatkowy!")
+   elif uczen["srednia"] >= 75:
+       uczen["ocena_opisowa"] = "Dobry (4)"
+   elif uczen["srednia"] >= 50:
+       uczen["ocena_opisowa"] = "Dostateczny (3)"
+   else:
+       uczen["ocena_opisowa"] = "Niedostateczny (2)"
+
+   # 4. Wyświetlenie sformatowanego podsumowania
+   print(f"Uczeń: {uczen['imie_nazwisko']} | Średnia: {uczen['srednia']:.2f}% | Ocena: {uczen['ocena_opisowa']}")
+   # Output: Uczeń: Tomek Kowalski | Średnia: 85.00% | Ocena: Dobry (4)
+   ```
+2. **Weryfikacja koszyka zakupowego i rabatów:**
+   ```python
+   cennik = {"laptop": 3500.0, "myszka": 120.0, "klawiatura": 250.0, "monitor": 1100.0}
+   koszyk = ["laptop", "myszka", "podkladka"]
+   kod = "  PROMO20  "
+
+   if koszyk[-1] not in cennik:
+       brakujacy = koszyk.pop()
+       cennik.setdefault(brakujacy, 45.0)
+
+   suma = cennik[koszyk[0]] + cennik[koszyk[1]]
+   kod_clean = kod.strip().upper()
+
+   if kod_clean == "PROMO20" and suma > 3000:
+       do_zaplaty = suma * 0.80
+   elif suma > 2000:
+       do_zaplaty = suma * 0.90
+   else:
+       do_zaplaty = suma
+
+   print(f"Suma przed rabatem: {suma:.2f} zł | Do zapłaty: {do_zaplaty:.2f} zł")
+   # Output: Suma przed rabatem: 3620.00 zł | Do zapłaty: 2896.00 zł
+   ```
+
+### Zadania 1.12: Pętle `while` i `for`
+1. **Suma cyfr liczby naturalnej (`while`):**
+   ```python
+   n = 5482
+   suma_cyfr = 0
+   while n > 0:
+       suma_cyfr += n % 10
+       n //= 10
+   print(f"Suma cyfr: {suma_cyfr}")  # 19
+   ```
+2. **Liczby niepodzielne przez 3 (`for` + `continue`):**
+   ```python
+   for i in range(1, 21):
+       if i % 3 == 0:
+           continue
+       print(i, end=" ")
+   # Output: 1 2 4 5 7 8 10 11 13 14 16 17 19 20
    ```
 
 ---
